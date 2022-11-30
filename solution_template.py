@@ -4,6 +4,10 @@ Solved by doing some magic
 """
 import time
 import sys
+import numpy as np
+from collections import Counter
+from functools import cache
+import re
 
 
 def solution(input_file):
