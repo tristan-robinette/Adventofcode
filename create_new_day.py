@@ -13,6 +13,7 @@ import argparse
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Create directory for advent of code")
     parser.add_argument('--all', action='store_true', help='Create a directory for every day in month')
+    parser.add_argument('--overwrite', action='store_true', help='Will overwrite the current day folder.')
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     today_date = datetime.datetime.now()
@@ -28,6 +29,10 @@ if __name__ == '__main__':
         if day > 25:
             break
         new_path = f"{dir_path}/{current_year}/day_{day}"
+
+        if os.path.isdir(new_path) and not args.overwrite:
+            continue
+
         Path(new_path).mkdir(parents=True, exist_ok=True)
 
         # create base input file and solution
@@ -54,7 +59,3 @@ if __name__ == '__main__':
                 f.seek(0)
                 f.truncate()
                 f.write(content)
-
-
-
-

@@ -1,0 +1,3 @@
+ADVENT_SETTINGS = {
+    "": ""
+}
