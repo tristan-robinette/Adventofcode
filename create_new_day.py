@@ -25,6 +25,8 @@ if __name__ == '__main__':
         days_to_make = [day + 1 for day in range(calendar.monthrange(today_date.year, today_date.month + 1)[1])]
 
     for day in days_to_make:
+        if day > 25:
+            break
         new_path = f"{dir_path}/{current_year}/day_{day}"
         Path(new_path).mkdir(parents=True, exist_ok=True)
 
