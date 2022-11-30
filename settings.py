@@ -1,3 +1,0 @@
-ADVENT_SETTINGS = {
-    "": ""
-}
