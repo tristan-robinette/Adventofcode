@@ -6,7 +6,6 @@ import time
 import sys
 import numpy as np
 from collections import Counter
-from functools import cache
 import re
 
 
