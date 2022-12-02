@@ -21,35 +21,22 @@ points = {"rock": 1, "paper": 2, "scissors": 3}
 
 def solution(input_file):
     with open(input_file, 'r') as file:
-        data = file.readlines()
+        data = [line.strip().split(" ") for line in file.readlines()]
         score = 0
         for line in data:
             # parsing
-            line = line.strip().split(" ")
             player1, player2 = line
             player_1_choice = mapping[player1]
             if player2 == "X":
                 # we lose!
                 player_2_choice = grid[player_1_choice][1]
+                score += points[player_2_choice]
             elif player2 == "Y":
                 # we draw!
-                player_2_choice = grid[player_1_choice][2]
+                score += points[player_1_choice] + 3  # can choose any choice since the same
             else:
                 # we win!
                 player_2_choice = grid[player_1_choice][0]
-
-            if player_1_choice == player_2_choice:
-                # draw case
-                score += points[player_1_choice] + 3  # can choose any choice since the same
-            # lose case
-            elif player_1_choice == "rock" and player_2_choice == "scissors":
-                score += points[player_2_choice]
-            elif player_1_choice == "paper" and player_2_choice == "rock":
-                score += points[player_2_choice]
-            elif player_1_choice == "scissors" and player_2_choice == "paper":
-                score += points[player_2_choice]
-            else:
-                # we won!
                 score += points[player_2_choice] + 6
     return score
 
