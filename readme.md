@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🌟 Day 1 
+### 🤍 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0011022090911865234 
+- Timing: 0.0011029243469238281 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009720325469970703 
+- Timing: 0.0009119510650634766 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🌿 Day 2 
+### 🧣 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0014109611511230469 
+- Timing: 0.0008378028869628906 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0010251998901367188 
+- Timing: 0.0010230541229248047 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🛷 Day 3 
+### 🥛 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0006420612335205078 
+- Timing: 0.0005412101745605469 
 
 
 ```python
@@ -235,8 +235,7 @@ alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
 
 def solution(input_file):
     return sum(
-        [alpha_dic[set([char for char in line[:len(line) // 2]]).intersection(
-            [char for char in line[len(line) // 2:]]).pop()]
+        [alpha_dic[set(line[:len(line) // 2]).intersection(line[len(line) // 2:]).pop()]
          for line in [line.strip() for line in open(input_file, 'r').readlines()]]
     )
 
@@ -246,7 +245,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005598068237304688 
+- Timing: 0.0005776882171630859 
 
 
 ```python
