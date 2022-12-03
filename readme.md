@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### ❄️ Day 1 
+### 🌟 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0011060237884521484 
+- Timing: 0.0011022090911865234 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009961128234863281 
+- Timing: 0.0009720325469970703 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 👪 Day 2 
+### 🌿 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0009050369262695312 
+- Timing: 0.0014109611511230469 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.001074075698852539 
+- Timing: 0.0010251998901367188 
 
 
 ```python
@@ -206,6 +206,73 @@ def solution(input_file):
                 player_2_choice = grid[player_1_choice][0]
                 score += points[player_2_choice] + 6
     return score
+
+
+
+```
+<hr>
+
+### 🛷 Day 3 
+
+##### Day 3 Solution Part 1 
+
+- Answer: 7917 
+- Timing: 0.0006420612335205078 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 3 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import string
+
+alphabet = string.ascii_lowercase
+alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
+
+
+def solution(input_file):
+    return sum(
+        [alpha_dic[set([char for char in line[:len(line) // 2]]).intersection(
+            [char for char in line[len(line) // 2:]]).pop()]
+         for line in [line.strip() for line in open(input_file, 'r').readlines()]]
+    )
+
+
+
+```
+##### Day 3 Solution Part 2 
+
+- Answer: 2585 
+- Timing: 0.0005598068237304688 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 3 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import string
+
+alphabet = string.ascii_lowercase
+alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        groups = []
+        current_group = []
+        # create elf groups
+        for line in [line.strip() for line in file.readlines()]:
+            current_group.append(set([char for char in line]))
+            if len(current_group) == 3:
+                groups.append(current_group)
+                current_group = []
+    return sum([alpha_dic[set.intersection(*group).pop()] for group in groups])
 
 
 
