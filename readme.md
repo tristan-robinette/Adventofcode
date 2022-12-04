@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🤍 Day 1 
+### 🍫 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0011029243469238281 
+- Timing: 0.0009768009185791016 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009119510650634766 
+- Timing: 0.0009801387786865234 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧣 Day 2 
+### 🔔 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008378028869628906 
+- Timing: 0.0007271766662597656 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0010230541229248047 
+- Timing: 0.001135110855102539 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🥛 Day 3 
+### 🎶 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005412101745605469 
+- Timing: 0.00037097930908203125 
 
 
 ```python
@@ -245,7 +245,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005776882171630859 
+- Timing: 0.0005929470062255859 
 
 
 ```python
@@ -272,6 +272,90 @@ def solution(input_file):
                 groups.append(current_group)
                 current_group = []
     return sum([alpha_dic[set.intersection(*group).pop()] for group in groups])
+
+
+
+```
+<hr>
+
+### ☕ Day 4 
+
+##### Day 4 Solution Part 1 
+
+- Answer: 518 
+- Timing: 0.0026319026947021484 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 4 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = [line.split(",") for line in entries.strip().splitlines()]
+	sol = 0
+	for entry in entries:
+		# more parsing...
+		elf1, elf2 = [list(map(int, e.split("-"))) for e in entry]  # must be better way doing this??
+		# create ranges for each section with adding 1 to account for 0 based
+		elf1_range = set(range(elf1[0], elf1[1] + 1))
+		elf2_range = set(range(elf2[0], elf2[1] + 1))
+		# check both cases of full ranges being in either elves sections.
+		is_subset = set.issubset(elf2_range, elf1_range)
+		if is_subset:
+			sol += 1
+		else:
+			switch = set.issubset(elf1_range, elf2_range)
+			if switch:
+				sol += 1
+	return sol
+
+
+
+```
+##### Day 4 Solution Part 2 
+
+- Answer: 909 
+- Timing: 0.006433725357055664 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 4 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = [line.split(",") for line in entries.strip().splitlines()]
+	sol = 0
+	for entry in entries:
+		# more parsing...
+		elf1, elf2 = [list(map(int, e.split("-"))) for e in entry]  # must be better way doing this??
+		# create ranges for each section with adding 1 to account for 0 based
+		elf1_range = set(range(elf1[0], elf1[1] + 1))
+		elf2_range = set(range(elf2[0], elf2[1] + 1))
+		# check both cases of full ranges being in either elves sections.
+		is_subset = set.intersection(elf2_range, elf1_range)
+		if is_subset:
+			sol += 1
+		else:
+			switch = set.intersection(elf1_range, elf2_range)
+			if switch:
+				sol += 1
+	return sol
 
 
 

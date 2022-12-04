@@ -15,7 +15,6 @@ def solution(input_file):
 	for entry in entries:
 		# more parsing...
 		elf1, elf2 = [list(map(int, e.split("-"))) for e in entry]  # must be better way doing this??
-		print(elf1, elf2)
 		# create ranges for each section with adding 1 to account for 0 based
 		elf1_range = set(range(elf1[0], elf1[1] + 1))
 		elf2_range = set(range(elf2[0], elf2[1] + 1))
