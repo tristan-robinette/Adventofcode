@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🍫 Day 1 
+### 👼 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0009768009185791016 
+- Timing: 0.0011310577392578125 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009801387786865234 
+- Timing: 0.0009617805480957031 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🔔 Day 2 
+### ⛄ Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0007271766662597656 
+- Timing: 0.0008652210235595703 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.001135110855102539 
+- Timing: 0.0010900497436523438 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🎶 Day 3 
+### 🧦 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.00037097930908203125 
+- Timing: 0.0005359649658203125 
 
 
 ```python
@@ -245,7 +245,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005929470062255859 
+- Timing: 0.0005908012390136719 
 
 
 ```python
@@ -278,12 +278,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ☕ Day 4 
+### 🎄 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0026319026947021484 
+- Timing: 0.0027799606323242188 
 
 
 ```python
@@ -308,13 +308,10 @@ def solution(input_file):
 		elf1_range = set(range(elf1[0], elf1[1] + 1))
 		elf2_range = set(range(elf2[0], elf2[1] + 1))
 		# check both cases of full ranges being in either elves sections.
-		is_subset = set.issubset(elf2_range, elf1_range)
-		if is_subset:
+		if set.issubset(elf2_range, elf1_range):
 			sol += 1
-		else:
-			switch = set.issubset(elf1_range, elf2_range)
-			if switch:
-				sol += 1
+		elif set.issubset(elf1_range, elf2_range):
+			sol += 1
 	return sol
 
 
@@ -323,7 +320,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.006433725357055664 
+- Timing: 0.002753019332885742 
 
 
 ```python
@@ -348,13 +345,10 @@ def solution(input_file):
 		elf1_range = set(range(elf1[0], elf1[1] + 1))
 		elf2_range = set(range(elf2[0], elf2[1] + 1))
 		# check both cases of full ranges being in either elves sections.
-		is_subset = set.intersection(elf2_range, elf1_range)
-		if is_subset:
+		if set.intersection(elf2_range, elf1_range):
 			sol += 1
-		else:
-			switch = set.intersection(elf1_range, elf2_range)
-			if switch:
-				sol += 1
+		elif set.intersection(elf1_range, elf2_range):
+			sol += 1
 	return sol
 
 
