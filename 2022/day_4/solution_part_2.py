@@ -19,13 +19,10 @@ def solution(input_file):
 		elf1_range = set(range(elf1[0], elf1[1] + 1))
 		elf2_range = set(range(elf2[0], elf2[1] + 1))
 		# check both cases of full ranges being in either elves sections.
-		is_subset = set.intersection(elf2_range, elf1_range)
-		if is_subset:
+		if set.intersection(elf2_range, elf1_range):
 			sol += 1
-		else:
-			switch = set.intersection(elf1_range, elf2_range)
-			if switch:
-				sol += 1
+		elif set.intersection(elf1_range, elf2_range):
+			sol += 1
 	return sol
 
 
