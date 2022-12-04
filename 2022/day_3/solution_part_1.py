@@ -12,8 +12,14 @@ alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
 
 def solution(input_file):
     return sum(
-        [alpha_dic[set(line[:len(line) // 2]).intersection(line[len(line) // 2:]).pop()]
-         for line in [line.strip() for line in open(input_file, 'r').readlines()]]
+        alpha_dic[
+            set(line[: len(line) // 2])
+            .intersection(line[len(line) // 2 :])
+            .pop()
+        ]
+        for line in [
+            line.strip() for line in open(input_file, 'r').readlines()
+        ]
     )
 
 

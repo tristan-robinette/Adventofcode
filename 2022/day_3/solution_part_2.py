@@ -16,11 +16,11 @@ def solution(input_file):
         current_group = []
         # create elf groups
         for line in [line.strip() for line in file.readlines()]:
-            current_group.append(set([char for char in line]))
+            current_group.append(set(list(line)))
             if len(current_group) == 3:
                 groups.append(current_group)
                 current_group = []
-    return sum([alpha_dic[set.intersection(*group).pop()] for group in groups])
+    return sum(alpha_dic[set.intersection(*group).pop()] for group in groups)
 
 
 if __name__ == "__main__":

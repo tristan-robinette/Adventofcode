@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 👼 Day 1 
+### 🎁 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0011310577392578125 
+- Timing: 0.0011031627655029297 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009617805480957031 
+- Timing: 0.0009720325469970703 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ⛄ Day 2 
+### 🦌 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008652210235595703 
+- Timing: 0.0008749961853027344 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0010900497436523438 
+- Timing: 0.0013267993927001953 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧦 Day 3 
+### 🛷 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005359649658203125 
+- Timing: 0.0005981922149658203 
 
 
 ```python
@@ -235,8 +235,14 @@ alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
 
 def solution(input_file):
     return sum(
-        [alpha_dic[set(line[:len(line) // 2]).intersection(line[len(line) // 2:]).pop()]
-         for line in [line.strip() for line in open(input_file, 'r').readlines()]]
+        alpha_dic[
+            set(line[: len(line) // 2])
+            .intersection(line[len(line) // 2 :])
+            .pop()
+        ]
+        for line in [
+            line.strip() for line in open(input_file, 'r').readlines()
+        ]
     )
 
 
@@ -245,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005908012390136719 
+- Timing: 0.0004868507385253906 
 
 
 ```python
@@ -267,23 +273,23 @@ def solution(input_file):
         current_group = []
         # create elf groups
         for line in [line.strip() for line in file.readlines()]:
-            current_group.append(set([char for char in line]))
+            current_group.append(set(list(line)))
             if len(current_group) == 3:
                 groups.append(current_group)
                 current_group = []
-    return sum([alpha_dic[set.intersection(*group).pop()] for group in groups])
+    return sum(alpha_dic[set.intersection(*group).pop()] for group in groups)
 
 
 
 ```
 <hr>
 
-### 🎄 Day 4 
+### 🍪 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0027799606323242188 
+- Timing: 0.0027658939361572266 
 
 
 ```python
@@ -320,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.002753019332885742 
+- Timing: 0.0027561187744140625 
 
 
 ```python
