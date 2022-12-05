@@ -18,9 +18,6 @@ def solution(input_file):
 	for line in crates:
 		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
 		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
-		if len(items) < number_cols:
-			for _ in range(number_cols - len(items)):
-				items += [""]
 		data.append(items)
 	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
 	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]

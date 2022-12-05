@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🥂 Day 1 
+### 🎶 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0012218952178955078 
+- Timing: 0.001125335693359375 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0010631084442138672 
+- Timing: 0.0009150505065917969 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🤶 Day 2 
+### ❄️ Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0009071826934814453 
+- Timing: 0.0008280277252197266 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0012538433074951172 
+- Timing: 0.0010499954223632812 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧦 Day 3 
+### 🦌 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005481243133544922 
+- Timing: 0.0005550384521484375 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005199909210205078 
+- Timing: 0.0004930496215820312 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍪 Day 4 
+### 🍷 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0027811527252197266 
+- Timing: 0.0028409957885742188 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.0027861595153808594 
+- Timing: 0.0027441978454589844 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🦌 Day 5 
+### 🎁 Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.001786947250366211 
+- Timing: 0.0016710758209228516 
 
 
 ```python
@@ -391,9 +391,6 @@ def solution(input_file):
 	for line in crates:
 		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
 		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
-		if len(items) < number_cols:
-			for _ in range(number_cols - len(items)):
-				items += [""]
 		data.append(items)
 	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
 	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
@@ -418,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0007929801940917969 
+- Timing: 0.0007228851318359375 
 
 
 ```python
@@ -442,9 +439,6 @@ def solution(input_file):
 	for line in crates:
 		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
 		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
-		if len(items) < number_cols:
-			for _ in range(number_cols - len(items)):
-				items += [""]
 		data.append(items)
 	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
 	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
