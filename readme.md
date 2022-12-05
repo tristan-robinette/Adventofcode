@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🎁 Day 1 
+### 🥂 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0011031627655029297 
+- Timing: 0.0012218952178955078 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009720325469970703 
+- Timing: 0.0010631084442138672 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🦌 Day 2 
+### 🤶 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008749961853027344 
+- Timing: 0.0009071826934814453 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0013267993927001953 
+- Timing: 0.0012538433074951172 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🛷 Day 3 
+### 🧦 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005981922149658203 
+- Timing: 0.0005481243133544922 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0004868507385253906 
+- Timing: 0.0005199909210205078 
 
 
 ```python
@@ -289,7 +289,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0027658939361572266 
+- Timing: 0.0027811527252197266 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.0027561187744140625 
+- Timing: 0.0027861595153808594 
 
 
 ```python
@@ -356,6 +356,111 @@ def solution(input_file):
 		elif set.intersection(elf1_range, elf2_range):
 			sol += 1
 	return sol
+
+
+
+```
+<hr>
+
+### 🦌 Day 5 
+
+##### Day 5 Solution Part 1 
+
+- Answer: TBVFVDZPN 
+- Timing: 0.001786947250366211 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 5 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import pandas as pd
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.readlines()
+	instructions = [line.strip() for line in entries if 'move' in line]
+	above_instructions = [line for line in entries if 'move' not in line]
+	number_cols = max(int(num) for num in above_instructions[-2].split())  # get how many cols there are supposed to be
+	crates = above_instructions[:-2]  # last items is a newline and numbers row so we remove
+	data = []
+	for line in crates:
+		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
+		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
+		if len(items) < number_cols:
+			for _ in range(number_cols - len(items)):
+				items += [""]
+		data.append(items)
+	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
+	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
+
+	for instruction in instructions:
+		action, number_to_move, from_col, from_col_num, to_col, to_col_num = instruction.split()  # <-- lol
+		from_col_num = int(from_col_num)
+		number_to_move = int(number_to_move)
+		to_col_num = int(to_col_num)
+		for _ in range(number_to_move):
+			# get the value to move
+			arr_value_move = final_arr[from_col_num - 1][0]
+			# update the array with removed value
+			final_arr[from_col_num - 1] = final_arr[from_col_num - 1][1:]
+			# update the new array
+			final_arr[to_col_num - 1] = [arr_value_move] + final_arr[to_col_num - 1]
+	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
+
+
+
+```
+##### Day 5 Solution Part 2 
+
+- Answer: VLCWHTDSZ 
+- Timing: 0.0007929801940917969 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 5 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+import pandas as pd
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.readlines()
+	instructions = [line.strip() for line in entries if 'move' in line]
+	above_instructions = [line for line in entries if 'move' not in line]
+	number_cols = max(int(num) for num in above_instructions[-2].split())  # get how many cols there are supposed to be
+	crates = above_instructions[:-2]  # last items is a newline and numbers row so we remove
+	data = []
+	for line in crates:
+		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
+		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
+		if len(items) < number_cols:
+			for _ in range(number_cols - len(items)):
+				items += [""]
+		data.append(items)
+	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
+	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
+
+	for instruction in instructions:
+		# remove loop and grab len(num_to_move) from array instead
+		action, number_to_move, from_col, from_col_num, to_col, to_col_num = instruction.split()  # <-- lol
+		from_col_num = int(from_col_num)
+		number_to_move = int(number_to_move)
+		to_col_num = int(to_col_num)
+		arr_value_move = final_arr[from_col_num - 1][:int(number_to_move)]
+		# update the array with removed value
+		final_arr[from_col_num - 1] = final_arr[from_col_num - 1][int(number_to_move):]
+		# update the new array
+		final_arr[to_col_num - 1] = arr_value_move + final_arr[to_col_num - 1]
+	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
 
 
 
