@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🎶 Day 1 
+### 🥛 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.001125335693359375 
+- Timing: 0.001608133316040039 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009150505065917969 
+- Timing: 0.0009489059448242188 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ❄️ Day 2 
+### 🧦 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008280277252197266 
+- Timing: 0.000827789306640625 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0010499954223632812 
+- Timing: 0.0010538101196289062 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🦌 Day 3 
+### 🌟 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005550384521484375 
+- Timing: 0.0005018711090087891 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0004930496215820312 
+- Timing: 0.00046324729919433594 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍷 Day 4 
+### 🏂 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0028409957885742188 
+- Timing: 0.002619028091430664 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.0027441978454589844 
+- Timing: 0.002604961395263672 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🎁 Day 5 
+### 🔔 Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.0016710758209228516 
+- Timing: 0.003178119659423828 
 
 
 ```python
@@ -415,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0007228851318359375 
+- Timing: 0.0007479190826416016 
 
 
 ```python
@@ -455,6 +455,68 @@ def solution(input_file):
 		# update the new array
 		final_arr[to_col_num - 1] = arr_value_move + final_arr[to_col_num - 1]
 	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
+
+
+
+```
+<hr>
+
+### ✨ Day 6 
+
+##### Day 6 Solution Part 1 
+
+- Answer: 1142 
+- Timing: 0.000640869140625 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 6 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().strip()
+	min_char_before_marker = 4
+
+	for i, char in enumerate(entries, 1):
+		if i < min_char_before_marker:
+			continue
+		if len(set(c for c in entries[i - min_char_before_marker: i])) == min_char_before_marker:
+			return i
+
+
+
+```
+##### Day 6 Solution Part 2 
+
+- Answer: 2803 
+- Timing: 0.0021979808807373047 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 6 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().strip()
+	min_char_before_marker = 14
+
+	for i, char in enumerate(entries, 1):
+		if i < min_char_before_marker:
+			continue
+		if len(set(c for c in entries[i - min_char_before_marker: i])) == min_char_before_marker:
+			return i
 
 
 
