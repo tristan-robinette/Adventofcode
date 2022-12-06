@@ -14,7 +14,7 @@ def solution(input_file):
 	for i, char in enumerate(entries, 1):
 		if i < min_char_before_marker:
 			continue
-		if len(set(c for c in entries[i - min_char_before_marker: i])) == min_char_before_marker:
+		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
 
 

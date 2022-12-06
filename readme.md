@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🥛 Day 1 
+### 🎄 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.001608133316040039 
+- Timing: 0.001188039779663086 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009489059448242188 
+- Timing: 0.0010559558868408203 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧦 Day 2 
+### ☕ Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.000827789306640625 
+- Timing: 0.0008630752563476562 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0010538101196289062 
+- Timing: 0.0011868476867675781 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🌟 Day 3 
+### 🍫 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005018711090087891 
+- Timing: 0.0005249977111816406 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.00046324729919433594 
+- Timing: 0.0005071163177490234 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🏂 Day 4 
+### 🥂 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.002619028091430664 
+- Timing: 0.002772092819213867 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.002604961395263672 
+- Timing: 0.002775907516479492 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🔔 Day 5 
+### ⛄ Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.003178119659423828 
+- Timing: 0.0037679672241210938 
 
 
 ```python
@@ -415,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0007479190826416016 
+- Timing: 0.0007109642028808594 
 
 
 ```python
@@ -461,12 +461,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ✨ Day 6 
+### 🍪 Day 6 
 
 ##### Day 6 Solution Part 1 
 
 - Answer: 1142 
-- Timing: 0.000640869140625 
+- Timing: 0.0004737377166748047 
 
 
 ```python
@@ -486,7 +486,7 @@ def solution(input_file):
 	for i, char in enumerate(entries, 1):
 		if i < min_char_before_marker:
 			continue
-		if len(set(c for c in entries[i - min_char_before_marker: i])) == min_char_before_marker:
+		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
 
 
@@ -495,7 +495,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 2 
 
 - Answer: 2803 
-- Timing: 0.0021979808807373047 
+- Timing: 0.0013110637664794922 
 
 
 ```python
@@ -515,7 +515,7 @@ def solution(input_file):
 	for i, char in enumerate(entries, 1):
 		if i < min_char_before_marker:
 			continue
-		if len(set(c for c in entries[i - min_char_before_marker: i])) == min_char_before_marker:
+		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
 
 
