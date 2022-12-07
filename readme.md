@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🎄 Day 1 
+### 🕯 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.001188039779663086 
+- Timing: 0.0010840892791748047 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0010559558868408203 
+- Timing: 0.000942230224609375 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ☕ Day 2 
+### 🤶 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008630752563476562 
+- Timing: 0.0008649826049804688 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0011868476867675781 
+- Timing: 0.0012888908386230469 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍫 Day 3 
+### 🏂 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005249977111816406 
+- Timing: 0.0005371570587158203 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005071163177490234 
+- Timing: 0.0004990100860595703 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🥂 Day 4 
+### 🥞 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.002772092819213867 
+- Timing: 0.0026988983154296875 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.002775907516479492 
+- Timing: 0.002724170684814453 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### ⛄ Day 5 
+### 🔔 Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.0037679672241210938 
+- Timing: 0.0038449764251708984 
 
 
 ```python
@@ -415,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0007109642028808594 
+- Timing: 0.0008111000061035156 
 
 
 ```python
@@ -466,7 +466,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 1 
 
 - Answer: 1142 
-- Timing: 0.0004737377166748047 
+- Timing: 0.0004680156707763672 
 
 
 ```python
@@ -495,7 +495,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 2 
 
 - Answer: 2803 
-- Timing: 0.0013110637664794922 
+- Timing: 0.0013358592987060547 
 
 
 ```python
@@ -517,6 +517,118 @@ def solution(input_file):
 			continue
 		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
+
+
+
+```
+<hr>
+
+### 🧣 Day 7 
+
+##### Day 7 Solution Part 1 
+
+- Answer: 1306611 
+- Timing: 0.0019330978393554688 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 7 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from string import digits
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().strip().splitlines()
+	dir_sizes = {}
+	checked_f = {}
+	crnt_dir = []
+
+	for line in entries:
+		ln = line.strip()
+		if ln.startswith('$ cd'):
+			if not crnt_dir:
+				crnt_dir.append('/')
+			elif ln.split(' ')[2] == '/':
+				crnt_dir = crnt_dir[0]
+			elif ln.split(' ')[2] == '..':
+				crnt_dir = crnt_dir[:-1]
+			else:
+				crnt_dir.append(ln.split(' ')[2])
+
+		elif ln[0] in digits:
+			dir_str = '\\'.join(crnt_dir)
+			if dir_str not in checked_f.keys():
+				checked_f[dir_str] = []
+			if ln.split(' ')[1] not in checked_f[dir_str]:
+				checked_f[dir_str].append(ln.split(' ')[1])
+				for f in range(len(crnt_dir)+1):
+					if '\\'.join(crnt_dir[:f]) not in dir_sizes.keys():
+						if '\\'.join(crnt_dir[:f]).strip() == '':
+							continue
+						dir_sizes['\\'.join(crnt_dir[:f])] = 0
+					dir_sizes['\\'.join(crnt_dir[:f])] += int(line.split(' ')[0])
+	return sum(n for n in dir_sizes.values() if n < 100000)
+
+
+
+```
+##### Day 7 Solution Part 2 
+
+- Answer: 13210366 
+- Timing: 0.0015361309051513672 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 7 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from string import digits
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().strip().splitlines()
+	dir_sizes = {}
+	checked_f = {}
+	crnt_dir = []
+
+	for line in entries:
+		ln = line.strip()
+		if ln.startswith('$ cd'):
+			if not crnt_dir:
+				crnt_dir.append('/')
+			elif ln.split(' ')[2] == '/':
+				crnt_dir = crnt_dir[0]
+			elif ln.split(' ')[2] == '..':
+				crnt_dir = crnt_dir[:-1]
+			else:
+				crnt_dir.append(ln.split(' ')[2])
+
+		elif ln[0] in digits:
+			dir_str = '\\'.join(crnt_dir)
+			if dir_str not in checked_f.keys():
+				checked_f[dir_str] = []
+			if ln.split(' ')[1] not in checked_f[dir_str]:
+				checked_f[dir_str].append(ln.split(' ')[1])
+				for f in range(len(crnt_dir)+1):
+					if '\\'.join(crnt_dir[:f]) not in dir_sizes.keys():
+						if '\\'.join(crnt_dir[:f]).strip() == '':
+							continue
+						dir_sizes['\\'.join(crnt_dir[:f])] = 0
+					dir_sizes['\\'.join(crnt_dir[:f])] += int(line.split(' ')[0])
+	sort_vals = sorted(dir_sizes.values())
+	space_needed = 30000000-(70000000-sort_vals[-1])
+	for n in sort_vals:
+		if n >= space_needed:
+			return n
 
 
 
