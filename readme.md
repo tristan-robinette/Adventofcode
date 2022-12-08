@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🕯 Day 1 
+### ❄️ Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0010840892791748047 
+- Timing: 0.0012009143829345703 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.000942230224609375 
+- Timing: 0.0009930133819580078 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🤶 Day 2 
+### 🥞 Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008649826049804688 
+- Timing: 0.0009691715240478516 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0012888908386230469 
+- Timing: 0.0012171268463134766 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🏂 Day 3 
+### 🎁 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005371570587158203 
+- Timing: 0.0005488395690917969 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0004990100860595703 
+- Timing: 0.0005059242248535156 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🥞 Day 4 
+### 🍷 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.0026988983154296875 
+- Timing: 0.002746105194091797 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.002724170684814453 
+- Timing: 0.002901792526245117 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🔔 Day 5 
+### 🤶 Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.0038449764251708984 
+- Timing: 0.006957054138183594 
 
 
 ```python
@@ -415,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0008111000061035156 
+- Timing: 0.0007970333099365234 
 
 
 ```python
@@ -461,12 +461,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍪 Day 6 
+### 🛷 Day 6 
 
 ##### Day 6 Solution Part 1 
 
 - Answer: 1142 
-- Timing: 0.0004680156707763672 
+- Timing: 0.0006918907165527344 
 
 
 ```python
@@ -495,7 +495,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 2 
 
 - Answer: 2803 
-- Timing: 0.0013358592987060547 
+- Timing: 0.0017719268798828125 
 
 
 ```python
@@ -523,12 +523,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧣 Day 7 
+### 🏂 Day 7 
 
 ##### Day 7 Solution Part 1 
 
 - Answer: 1306611 
-- Timing: 0.0019330978393554688 
+- Timing: 0.0025300979614257812 
 
 
 ```python
@@ -580,7 +580,7 @@ def solution(input_file):
 ##### Day 7 Solution Part 2 
 
 - Answer: 13210366 
-- Timing: 0.0015361309051513672 
+- Timing: 0.0016140937805175781 
 
 
 ```python
@@ -629,6 +629,120 @@ def solution(input_file):
 	for n in sort_vals:
 		if n >= space_needed:
 			return n
+
+
+
+```
+<hr>
+
+### 👪 Day 8 
+
+##### Day 8 Solution Part 1 
+
+- Answer: 1801 
+- Timing: 0.14348483085632324 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 8 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import numpy as np
+
+
+def is_visible(row_ix, column_ix, grid):
+	if row_ix in [0, len(grid) - 1]:
+		return True
+	if column_ix in [0, len(grid[row_ix]) - 1]:
+		return True
+
+	value = grid[row_ix][column_ix]
+	row = grid[row_ix]
+	column = [grid[row_ix][column_ix] for row_ix in range(len(grid))]
+
+	left = all(x < value for x in row[:column_ix])
+	right = all(x < value for x in row[column_ix + 1:])
+	top = all(x < value for x in column[:row_ix])
+	bottom = all(x < value for x in column[row_ix + 1:])
+
+	return left or right or top or bottom
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().splitlines()
+	grid = np.array([list(row.strip()) for row in entries]).astype('int')
+	vis = 0
+	for row_num, row in enumerate(grid):
+		for col_num, col in enumerate(row):
+			if is_visible(row_num, col_num, grid):
+				vis += 1
+	return vis
+
+
+
+```
+##### Day 8 Solution Part 2 
+
+- Answer: 209880 
+- Timing: 0.13908696174621582 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 8 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+import numpy as np
+
+
+def get_score(row_ix, column_ix, grid):
+    value = grid[row_ix][column_ix]
+    row = grid[row_ix]
+    column = [grid[row_ix][column_ix] for row_ix in range(len(grid))]
+
+    left, right, top, bottom = 0, 0, 0, 0
+
+    # Check left
+    for x in reversed(row[:column_ix]):
+        left += 1
+        if x >= value:
+            break
+
+    # Check right
+    for x in row[column_ix + 1:]:
+        right += 1
+        if x >= value:
+            break
+
+    # Check top
+    for x in reversed(column[:row_ix]):
+        top += 1
+        if x >= value:
+            break
+
+    # Check bottom
+    for x in column[row_ix + 1:]:
+        bottom += 1
+        if x >= value:
+            break
+
+    return left * right * top * bottom
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read().splitlines()
+    grid = np.array([list(row.strip()) for row in entries]).astype('int')
+    score = []
+    for row_num, row in enumerate(grid):
+        score.extend(get_score(row_num, col_num, grid) for col_num, col in enumerate(row))
+    return max(score)
 
 
 
