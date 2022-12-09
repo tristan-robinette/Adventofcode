@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### ❄️ Day 1 
+### 🦌 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0012009143829345703 
+- Timing: 0.00110626220703125 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009930133819580078 
+- Timing: 0.0009059906005859375 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🥞 Day 2 
+### ⛄ Day 2 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0009691715240478516 
+- Timing: 0.0008862018585205078 
 
 
 ```python
@@ -161,7 +161,7 @@ def solution(input_file):
 ##### Day 2 Solution Part 2 
 
 - Answer: 11258 
-- Timing: 0.0012171268463134766 
+- Timing: 0.0010781288146972656 
 
 
 ```python
@@ -212,12 +212,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🎁 Day 3 
+### 🧣 Day 3 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0005488395690917969 
+- Timing: 0.0006859302520751953 
 
 
 ```python
@@ -251,7 +251,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005059242248535156 
+- Timing: 0.0005068778991699219 
 
 
 ```python
@@ -284,12 +284,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍷 Day 4 
+### 🍪 Day 4 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.002746105194091797 
+- Timing: 0.002808094024658203 
 
 
 ```python
@@ -326,7 +326,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.002901792526245117 
+- Timing: 0.003016948699951172 
 
 
 ```python
@@ -362,12 +362,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🤶 Day 5 
+### 🥞 Day 5 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.006957054138183594 
+- Timing: 0.009333133697509766 
 
 
 ```python
@@ -415,7 +415,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0007970333099365234 
+- Timing: 0.0008299350738525391 
 
 
 ```python
@@ -461,12 +461,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🛷 Day 6 
+### 🏂 Day 6 
 
 ##### Day 6 Solution Part 1 
 
 - Answer: 1142 
-- Timing: 0.0006918907165527344 
+- Timing: 0.0004589557647705078 
 
 
 ```python
@@ -495,7 +495,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 2 
 
 - Answer: 2803 
-- Timing: 0.0017719268798828125 
+- Timing: 0.0013461112976074219 
 
 
 ```python
@@ -523,12 +523,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🏂 Day 7 
+### 🔔 Day 7 
 
 ##### Day 7 Solution Part 1 
 
 - Answer: 1306611 
-- Timing: 0.0025300979614257812 
+- Timing: 0.0017209053039550781 
 
 
 ```python
@@ -580,7 +580,7 @@ def solution(input_file):
 ##### Day 7 Solution Part 2 
 
 - Answer: 13210366 
-- Timing: 0.0016140937805175781 
+- Timing: 0.0014979839324951172 
 
 
 ```python
@@ -635,12 +635,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 👪 Day 8 
+### 🤶 Day 8 
 
 ##### Day 8 Solution Part 1 
 
 - Answer: 1801 
-- Timing: 0.14348483085632324 
+- Timing: 0.13567805290222168 
 
 
 ```python
@@ -688,7 +688,7 @@ def solution(input_file):
 ##### Day 8 Solution Part 2 
 
 - Answer: 209880 
-- Timing: 0.13908696174621582 
+- Timing: 0.12293696403503418 
 
 
 ```python
@@ -743,6 +743,142 @@ def solution(input_file):
     for row_num, row in enumerate(grid):
         score.extend(get_score(row_num, col_num, grid) for col_num, col in enumerate(row))
     return max(score)
+
+
+
+```
+<hr>
+
+### 🌟 Day 9 
+
+##### Day 9 Solution Part 1 
+
+- Answer: 6023 
+- Timing: 0.011626958847045898 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 9 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+class Coordinates:
+	def __init__(self, x=0, y=0):
+		self.x = x
+		self.y = y
+		self.direction_mapping = {'D': (0, -1), 'U': (0, 1), 'R': (1, 0), 'L': (-1, 0)}
+
+	def move_with_direction(self, direction):
+		x_shift, y_shift = self.direction_mapping[direction]
+		self.x += x_shift
+		self.y += y_shift
+
+	def move_to_become_neighbor(self, other_knot):
+		if abs(self.x - other_knot.x) == 2 and abs(self.y - other_knot.y) == 2:
+			self.x = self.x + int((other_knot.x - self.x) / 2)
+			self.y = self.y + int((other_knot.y - self.y) / 2)
+		elif abs(self.x - other_knot.x) == 2:
+			self.x = self.x + int((other_knot.x - self.x) / 2)
+			self.y = other_knot.y
+		elif abs(self.y - other_knot.y) == 2:
+			self.x = other_knot.x
+			self.y = self.y + int((other_knot.y - self.y) / 2)
+
+	@property
+	def as_tuple(self):
+		return self.x, self.y
+
+	def __repr__(self):
+		return f"[{self.x}, {self.y}]"
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read().strip().splitlines()
+
+	number_knots = 2
+	knots = [Coordinates() for _ in range(number_knots)]
+	tail_coordinates_set = set()
+	for direction, number in [row.split() for row in entries]:
+		for _ in range(int(number)):
+			# this is our parent knot, rest are tail
+			knots[0].move_with_direction(direction)
+			# offset parent knot and move children to be all fuzzy wuzzy with the parent
+			for index, knot in enumerate(knots[1:number_knots], 1):
+				knot.move_to_become_neighbor(knots[index - 1])
+			# add tail knot to unique set
+			tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
+	return len(tail_coordinates_set)
+
+
+
+```
+##### Day 9 Solution Part 2 
+
+- Answer: 2533 
+- Timing: 0.0410919189453125 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 9 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+class Coordinates:
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+        self.direction_mapping = {'D': (0, -1), 'U': (0, 1), 'R': (1, 0), 'L': (-1, 0)}
+
+    def move_with_direction(self, direction):
+        x_shift, y_shift = self.direction_mapping[direction]
+        self.x += x_shift
+        self.y += y_shift
+
+    def move_to_become_neighbor(self, other_knot):
+        if abs(self.x - other_knot.x) == 2 and abs(self.y - other_knot.y) == 2:
+            self.x = self.x + int((other_knot.x - self.x) / 2)
+            self.y = self.y + int((other_knot.y - self.y) / 2)
+        elif abs(self.x - other_knot.x) == 2:
+            self.x = self.x + int((other_knot.x - self.x) / 2)
+            self.y = other_knot.y
+        elif abs(self.y - other_knot.y) == 2:
+            self.x = other_knot.x
+            self.y = self.y + int((other_knot.y - self.y) / 2)
+
+    @property
+    def as_tuple(self):
+        return self.x, self.y
+
+    def __repr__(self):
+        return f"[{self.x}, {self.y}]"
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read().strip().splitlines()
+
+    number_knots = 10
+    knots = [Coordinates() for _ in range(number_knots)]
+    tail_coordinates_set = set()
+    for direction, number in [row.split() for row in entries]:
+        for _ in range(int(number)):
+            # this is our parent knot, rest are tail
+            knots[0].move_with_direction(direction)
+            # offset parent knot and move children to be all fuzzy wuzzy with the parent
+            for index, knot in enumerate(knots[1:number_knots], 1):
+                knot.move_to_become_neighbor(knots[index - 1])
+            # add tail knot to unique set
+            tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
+    return len(tail_coordinates_set)
 
 
 
