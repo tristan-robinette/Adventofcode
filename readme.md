@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### 🦌 Day 1 
+### ☕ Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.00110626220703125 
+- Timing: 0.0010988712310791016 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009059906005859375 
+- Timing: 0.0009868144989013672 
 
 
 ```python
@@ -105,12 +105,99 @@ def solution(input_file):
 ```
 <hr>
 
-### ⛄ Day 2 
+### 🧦 Day 2 
+
+##### Day 10 Solution Part 1 
+
+- Answer: 10760 
+- Timing: 0.00029397010803222656 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 10 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+
+	sol = 0
+	register_x = 1
+	inst = []
+	entries = entries.strip().splitlines()
+	# add buffer tick if not 'noop'
+	for entry in entries:
+		splitln = entry.split()
+		inst.extend((['noop', 0], [splitln[0], int(splitln[1])])) if len(splitln) > 1 else inst.append([splitln[0], 0])
+
+	for cycle, (instruction, value) in enumerate(inst, 1):
+		if (cycle + 20) % 40 == 0:
+			sol += register_x * cycle
+		register_x += value
+
+	return sol
+
+
+
+```
+##### Day 10 Solution Part 2 
+
+- Answer: FPGPHFGH 
+- Timing: 0.000164031982421875 
+
+
+```python
+"""
+Solution to Advent of Code 2022 day 10 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+
+	register_x = 1
+	inst = []
+	entries = entries.strip().splitlines()
+	screen = [['.']*40 for _ in range(6)]
+	# add buffer tick if not 'noop'
+	for entry in entries:
+		splitln = entry.split()
+		inst.extend((['noop', 0], [splitln[0], int(splitln[1])])) if len(splitln) > 1 else inst.append([splitln[0], 0])
+
+	for cycle, (instruction, value) in enumerate(inst, 1):
+		rx, cx = divmod(cycle-1, 40)
+		if register_x - 1 <= cx <= register_x + 1:
+			screen[rx][cx] = '#'
+		register_x += value
+
+	print('The result for solution 2 is:')
+	for row in screen:
+		for ele in row:
+			print(ele, end=' ')
+		print()
+
+	return 'FPGPHFGH'
+
+
+
+```
+<hr>
+
+### 🍾 Day 3 
 
 ##### Day 2 Solution Part 1 
 
 - Answer: 14531 
-- Timing: 0.0008862018585205078 
+- Timing: 0.0008490085601806641 
 
 
 ```python
@@ -212,12 +299,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧣 Day 3 
+### 🎄 Day 4 
 
 ##### Day 3 Solution Part 1 
 
 - Answer: 7917 
-- Timing: 0.0006859302520751953 
+- Timing: 0.0005459785461425781 
 
 
 ```python
@@ -251,7 +338,7 @@ def solution(input_file):
 ##### Day 3 Solution Part 2 
 
 - Answer: 2585 
-- Timing: 0.0005068778991699219 
+- Timing: 0.0004889965057373047 
 
 
 ```python
@@ -284,12 +371,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍪 Day 4 
+### 🧣 Day 5 
 
 ##### Day 4 Solution Part 1 
 
 - Answer: 518 
-- Timing: 0.002808094024658203 
+- Timing: 0.002686023712158203 
 
 
 ```python
@@ -326,7 +413,7 @@ def solution(input_file):
 ##### Day 4 Solution Part 2 
 
 - Answer: 909 
-- Timing: 0.003016948699951172 
+- Timing: 0.0026199817657470703 
 
 
 ```python
@@ -362,12 +449,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🥞 Day 5 
+### 🌿 Day 6 
 
 ##### Day 5 Solution Part 1 
 
 - Answer: TBVFVDZPN 
-- Timing: 0.009333133697509766 
+- Timing: 0.0038132667541503906 
 
 
 ```python
@@ -415,7 +502,7 @@ def solution(input_file):
 ##### Day 5 Solution Part 2 
 
 - Answer: VLCWHTDSZ 
-- Timing: 0.0008299350738525391 
+- Timing: 0.0008151531219482422 
 
 
 ```python
@@ -461,12 +548,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🏂 Day 6 
+### 🏂 Day 7 
 
 ##### Day 6 Solution Part 1 
 
 - Answer: 1142 
-- Timing: 0.0004589557647705078 
+- Timing: 0.0004279613494873047 
 
 
 ```python
@@ -495,7 +582,7 @@ def solution(input_file):
 ##### Day 6 Solution Part 2 
 
 - Answer: 2803 
-- Timing: 0.0013461112976074219 
+- Timing: 0.0013880729675292969 
 
 
 ```python
@@ -523,12 +610,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🔔 Day 7 
+### 🤶 Day 8 
 
 ##### Day 7 Solution Part 1 
 
 - Answer: 1306611 
-- Timing: 0.0017209053039550781 
+- Timing: 0.00167083740234375 
 
 
 ```python
@@ -580,7 +667,7 @@ def solution(input_file):
 ##### Day 7 Solution Part 2 
 
 - Answer: 13210366 
-- Timing: 0.0014979839324951172 
+- Timing: 0.0015192031860351562 
 
 
 ```python
@@ -635,12 +722,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🤶 Day 8 
+### 🍷 Day 9 
 
 ##### Day 8 Solution Part 1 
 
 - Answer: 1801 
-- Timing: 0.13567805290222168 
+- Timing: 0.1352229118347168 
 
 
 ```python
@@ -688,7 +775,7 @@ def solution(input_file):
 ##### Day 8 Solution Part 2 
 
 - Answer: 209880 
-- Timing: 0.12293696403503418 
+- Timing: 0.12220382690429688 
 
 
 ```python
@@ -749,12 +836,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🌟 Day 9 
+### 🎁 Day 10 
 
 ##### Day 9 Solution Part 1 
 
 - Answer: 6023 
-- Timing: 0.011626958847045898 
+- Timing: 0.011567831039428711 
 
 
 ```python
@@ -820,7 +907,7 @@ def solution(input_file):
 ##### Day 9 Solution Part 2 
 
 - Answer: 2533 
-- Timing: 0.0410919189453125 
+- Timing: 0.03997063636779785 
 
 
 ```python
