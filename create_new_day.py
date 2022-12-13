@@ -28,7 +28,7 @@ if __name__ == '__main__':
     dir_path = os.path.dirname(os.path.realpath(__file__))
     
     for day in range(current_day, last_day+1):
-        day_path = f"{dir_path}/{current_year}/day_{day}"
+        day_path = os.path.join(dir_path, current_year, f"day_{day}")
 
         if os.path.isdir(day_path) and not args.overwrite:
             continue
@@ -39,7 +39,7 @@ if __name__ == '__main__':
         # create blank input files
         for input_file in ['input.txt', 'input1.txt']:
             input_path = os.path.join(day_path, input_file)
-            with open(input_path, "w") as f:
+            with open(input_path, 'w') as f:
                 f.write('')
         
         # create the solutions
