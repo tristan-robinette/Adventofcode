@@ -73,6 +73,9 @@ if __name__ == '__main__':
         dirs = sorted([x[0] for x in os.walk(new_path, topdown=True)])[1:]
         for idx, day in enumerate(dirs, 1):
             year = day.split("/")[-2]
+            print(day)
+            if day == "/Users/tristanrobinette/PycharmProjects/advent/2022/day_12":
+                break
             for path, arr, files in os.walk(day):
                 day_num = path.split("/")[-1]
                 for file in files:
