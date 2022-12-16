@@ -41,12 +41,12 @@ Bonkers.
 
 ### Year 2022
 
-### ☕ Day 1 
+### 🥛 Day 1 
 
 ##### Day 1 Solution Part 1 
 
 - Answer: 68292 
-- Timing: 0.0010988712310791016 
+- Timing: 0.0012252330780029297 
 
 
 ```python
@@ -76,7 +76,7 @@ def solution(input_file):
 ##### Day 1 Solution Part 2 
 
 - Answer: 203203 
-- Timing: 0.0009868144989013672 
+- Timing: 0.0010440349578857422 
 
 
 ```python
@@ -105,12 +105,12 @@ def solution(input_file):
 ```
 <hr>
 
-### 🧦 Day 2 
+### 🕯 Day 2 
 
 ##### Day 10 Solution Part 1 
 
 - Answer: 10760 
-- Timing: 0.00029397010803222656 
+- Timing: 0.0002760887145996094 
 
 
 ```python
@@ -148,7 +148,7 @@ def solution(input_file):
 ##### Day 10 Solution Part 2 
 
 - Answer: FPGPHFGH 
-- Timing: 0.000164031982421875 
+- Timing: 0.00016617774963378906 
 
 
 ```python
@@ -192,196 +192,17 @@ def solution(input_file):
 ```
 <hr>
 
-### 🍾 Day 3 
+### 🤍 Day 3 
 
-##### Day 2 Solution Part 1 
+##### Day 11 Solution Part 1 
 
-- Answer: 14531 
-- Timing: 0.0008490085601806641 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 2 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-import numpy as np
-from collections import Counter
-import re
-
-
-# easier to think of who wins in if/else block this way, not actually needed
-mapping = {"A": "rock", "X": "rock", "B": "paper", "Y": "paper", "C": "scissors", "Z": "scissors"}
-
-points = {"rock": 1, "paper": 2, "scissors": 3}
-
-
-def solution(input_file):
-    with open(input_file, 'r') as file:
-        data = file.readlines()
-        score = 0
-        for line in data:
-            # parsing
-            line = line.strip().split(" ")
-            player1, player2 = line
-            player_1_choice, player_2_choice = mapping[player1], mapping[player2]
-            if player_1_choice == player_2_choice:
-                # draw case
-                score += points[player_1_choice] + 3  # can choose any choice since the same
-            # lose case
-            elif player_1_choice == "rock" and player_2_choice == "scissors":
-                score += points[player_2_choice]
-            elif player_1_choice == "paper" and player_2_choice == "rock":
-                score += points[player_2_choice]
-            elif player_1_choice == "scissors" and player_2_choice == "paper":
-                score += points[player_2_choice]
-            else:
-                # we won!
-                score += points[player_2_choice] + 6
-    return score
-
-
-
-```
-##### Day 2 Solution Part 2 
-
-- Answer: 11258 
-- Timing: 0.0010781288146972656 
+- Answer: 119715 
+- Timing: 0.0063822269439697266 
 
 
 ```python
 """
-Solution to Advent of Code 2022 day 2 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-# easier to think of who wins in if/else block this way, not actually needed
-mapping = {"A": "rock", "B": "paper", "C": "scissors"}
-
-# key is the choice. Value is array of outcomes based on desired scenario.
-# First choice is win, second is loss, third is draw
-grid = {
-    "rock": ["paper", "scissors", "rock"],
-    "paper": ["scissors", "rock", "paper"],
-    "scissors": ["rock", "paper", "scissors"],
-}
-
-points = {"rock": 1, "paper": 2, "scissors": 3}
-
-
-def solution(input_file):
-    with open(input_file, 'r') as file:
-        data = [line.strip().split(" ") for line in file.readlines()]
-        score = 0
-        for line in data:
-            # parsing
-            player1, player2 = line
-            player_1_choice = mapping[player1]
-            if player2 == "X":
-                # we lose!
-                player_2_choice = grid[player_1_choice][1]
-                score += points[player_2_choice]
-            elif player2 == "Y":
-                # we draw!
-                score += points[player_1_choice] + 3  # can choose any choice since the same
-            else:
-                # we win!
-                player_2_choice = grid[player_1_choice][0]
-                score += points[player_2_choice] + 6
-    return score
-
-
-
-```
-<hr>
-
-### 🎄 Day 4 
-
-##### Day 3 Solution Part 1 
-
-- Answer: 7917 
-- Timing: 0.0005459785461425781 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 3 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-import string
-
-alphabet = string.ascii_lowercase
-alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
-
-
-def solution(input_file):
-    return sum(
-        alpha_dic[
-            set(line[: len(line) // 2])
-            .intersection(line[len(line) // 2 :])
-            .pop()
-        ]
-        for line in [
-            line.strip() for line in open(input_file, 'r').readlines()
-        ]
-    )
-
-
-
-```
-##### Day 3 Solution Part 2 
-
-- Answer: 2585 
-- Timing: 0.0004889965057373047 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 3 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-import string
-
-alphabet = string.ascii_lowercase
-alpha_dic = {char: i for i, char in enumerate(alphabet + alphabet.upper(), 1)}
-
-
-def solution(input_file):
-    with open(input_file, 'r') as file:
-        groups = []
-        current_group = []
-        # create elf groups
-        for line in [line.strip() for line in file.readlines()]:
-            current_group.append(set(list(line)))
-            if len(current_group) == 3:
-                groups.append(current_group)
-                current_group = []
-    return sum(alpha_dic[set.intersection(*group).pop()] for group in groups)
-
-
-
-```
-<hr>
-
-### 🧣 Day 5 
-
-##### Day 4 Solution Part 1 
-
-- Answer: 518 
-- Timing: 0.002686023712158203 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 4 part 1
+Solution to Advent of Code 2022 day 11 part 1
 Solved by doing some magic
 """
 import time
@@ -390,582 +211,111 @@ import sys
 
 def solution(input_file):
 	with open(input_file,'r') as file:
-		entries = file.read()
-	# Parsing
-	entries = [line.split(",") for line in entries.strip().splitlines()]
-	sol = 0
-	for entry in entries:
-		# more parsing...
-		elf1, elf2 = [list(map(int, e.split("-"))) for e in entry]  # must be better way doing this??
-		# create ranges for each section with adding 1 to account for 0 based
-		elf1_range = set(range(elf1[0], elf1[1] + 1))
-		elf2_range = set(range(elf2[0], elf2[1] + 1))
-		# check both cases of full ranges being in either elves sections.
-		if set.issubset(elf2_range, elf1_range):
-			sol += 1
-		elif set.issubset(elf1_range, elf2_range):
-			sol += 1
-	return sol
+		entries = [line.strip() for line in file.readlines()]
 
-
-
-```
-##### Day 4 Solution Part 2 
-
-- Answer: 909 
-- Timing: 0.0026199817657470703 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 4 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	# Parsing
-	entries = [line.split(",") for line in entries.strip().splitlines()]
-	sol = 0
-	for entry in entries:
-		# more parsing...
-		elf1, elf2 = [list(map(int, e.split("-"))) for e in entry]  # must be better way doing this??
-		# create ranges for each section with adding 1 to account for 0 based
-		elf1_range = set(range(elf1[0], elf1[1] + 1))
-		elf2_range = set(range(elf2[0], elf2[1] + 1))
-		# check both cases of full ranges being in either elves sections.
-		if set.intersection(elf2_range, elf1_range):
-			sol += 1
-		elif set.intersection(elf1_range, elf2_range):
-			sol += 1
-	return sol
-
-
-
-```
-<hr>
-
-### 🌿 Day 6 
-
-##### Day 5 Solution Part 1 
-
-- Answer: TBVFVDZPN 
-- Timing: 0.0038132667541503906 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 5 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-import pandas as pd
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.readlines()
-	instructions = [line.strip() for line in entries if 'move' in line]
-	above_instructions = [line for line in entries if 'move' not in line]
-	number_cols = max(int(num) for num in above_instructions[-2].split())  # get how many cols there are supposed to be
-	crates = above_instructions[:-2]  # last items is a newline and numbers row so we remove
-	data = []
-	for line in crates:
-		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
-		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
-		data.append(items)
-	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
-	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
-
-	for instruction in instructions:
-		action, number_to_move, from_col, from_col_num, to_col, to_col_num = instruction.split()  # <-- lol
-		from_col_num = int(from_col_num)
-		number_to_move = int(number_to_move)
-		to_col_num = int(to_col_num)
-		for _ in range(number_to_move):
-			# get the value to move
-			arr_value_move = final_arr[from_col_num - 1][0]
-			# update the array with removed value
-			final_arr[from_col_num - 1] = final_arr[from_col_num - 1][1:]
-			# update the new array
-			final_arr[to_col_num - 1] = [arr_value_move] + final_arr[to_col_num - 1]
-	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
-
-
-
-```
-##### Day 5 Solution Part 2 
-
-- Answer: VLCWHTDSZ 
-- Timing: 0.0008151531219482422 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 5 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-import pandas as pd
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.readlines()
-	instructions = [line.strip() for line in entries if 'move' in line]
-	above_instructions = [line for line in entries if 'move' not in line]
-	number_cols = max(int(num) for num in above_instructions[-2].split())  # get how many cols there are supposed to be
-	crates = above_instructions[:-2]  # last items is a newline and numbers row so we remove
-	data = []
-	for line in crates:
-		line = line.replace("    ", "\n").replace("\n", " ").split(" ")  # elf style parsing. dont ask.
-		items = line[:-1] if not line[-1] else line  # strips out lines that end in blanks
-		data.append(items)
-	df = pd.DataFrame(columns=[str(num + 1) for num in range(number_cols)], data=data)
-	final_arr = [[val for val in a if val] for a in [df[col].tolist() for col in df.columns]]
-
-	for instruction in instructions:
-		# remove loop and grab len(num_to_move) from array instead
-		action, number_to_move, from_col, from_col_num, to_col, to_col_num = instruction.split()  # <-- lol
-		from_col_num = int(from_col_num)
-		number_to_move = int(number_to_move)
-		to_col_num = int(to_col_num)
-		arr_value_move = final_arr[from_col_num - 1][:int(number_to_move)]
-		# update the array with removed value
-		final_arr[from_col_num - 1] = final_arr[from_col_num - 1][int(number_to_move):]
-		# update the new array
-		final_arr[to_col_num - 1] = arr_value_move + final_arr[to_col_num - 1]
-	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
-
-
-
-```
-<hr>
-
-### 🏂 Day 7 
-
-##### Day 6 Solution Part 1 
-
-- Answer: 1142 
-- Timing: 0.0004279613494873047 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 6 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read().strip()
-	min_char_before_marker = 4
-
-	for i, char in enumerate(entries, 1):
-		if i < min_char_before_marker:
-			continue
-		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
-			return i
-
-
-
-```
-##### Day 6 Solution Part 2 
-
-- Answer: 2803 
-- Timing: 0.0013880729675292969 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 6 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read().strip()
-	min_char_before_marker = 14
-
-	for i, char in enumerate(entries, 1):
-		if i < min_char_before_marker:
-			continue
-		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
-			return i
-
-
-
-```
-<hr>
-
-### 🤶 Day 8 
-
-##### Day 7 Solution Part 1 
-
-- Answer: 1306611 
-- Timing: 0.00167083740234375 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 7 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-from string import digits
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read().strip().splitlines()
-	dir_sizes = {}
-	checked_f = {}
-	crnt_dir = []
-
+	monkeys = {}
+	num_rounds = 20
+	monk_count = 0
 	for line in entries:
-		ln = line.strip()
-		if ln.startswith('$ cd'):
-			if not crnt_dir:
-				crnt_dir.append('/')
-			elif ln.split(' ')[2] == '/':
-				crnt_dir = crnt_dir[0]
-			elif ln.split(' ')[2] == '..':
-				crnt_dir = crnt_dir[:-1]
-			else:
-				crnt_dir.append(ln.split(' ')[2])
+		if not line.strip():
+			monk_count += 1
+			continue
+		if line.startswith("Monkey"):
+			monkeys[f"monkey__{monk_count}"] = {
+				"starting_items": [],
+				"operation": "",
+				"test": None, "true": "",
+				"false": "",
+				"monkeys_inspected": 0
+			}
+		if line.startswith("Starting"):
+			monkeys[f"monkey__{monk_count}"]['starting_items'] = [int(num) for num in line.split(":")[-1].strip().split(",")]
+		if line.startswith("Operation"):
+			monkeys[f"monkey__{monk_count}"]['operation'] = line.split(":")[-1].split()
+		if line.startswith("Test"):
+			monkeys[f"monkey__{monk_count}"]['test'] = line.split(":")[-1].strip().split()[-1]
+		if line.startswith("If true"):
+			monkeys[f"monkey__{monk_count}"]['true'] = line.split(":")[-1].strip()
+		if line.startswith("If false"):
+			monkeys[f"monkey__{monk_count}"]['false'] = line.split(":")[-1].strip()
 
-		elif ln[0] in digits:
-			dir_str = '\\'.join(crnt_dir)
-			if dir_str not in checked_f.keys():
-				checked_f[dir_str] = []
-			if ln.split(' ')[1] not in checked_f[dir_str]:
-				checked_f[dir_str].append(ln.split(' ')[1])
-				for f in range(len(crnt_dir)+1):
-					if '\\'.join(crnt_dir[:f]) not in dir_sizes.keys():
-						if '\\'.join(crnt_dir[:f]).strip() == '':
-							continue
-						dir_sizes['\\'.join(crnt_dir[:f])] = 0
-					dir_sizes['\\'.join(crnt_dir[:f])] += int(line.split(' ')[0])
-	return sum(n for n in dir_sizes.values() if n < 100000)
+	for _ in range(num_rounds):
+		for monkey, values in monkeys.items():
+			for _ in range(len(values["starting_items"])):
+				item = values["starting_items"].pop(0)
+				monkeys[monkey]["monkeys_inspected"] += 1
+				multiplier = int(values["operation"][-1]) if values["operation"][-1] != "old" else item
+				worry = eval(f"{item} {values['operation'][-2]} {multiplier}") // 3
+				passes_test = values["true"] if worry % int(values["test"]) == 0 else values["false"]
+				monkeys[f"monkey__{int(passes_test.split()[-1])}"]['starting_items'].append(worry)
+	monkey1, monkey2 = sorted([monkey["monkeys_inspected"] for monkey in monkeys.values()], reverse=True)[:2]
+	return monkey1 * monkey2
 
 
 
 ```
-##### Day 7 Solution Part 2 
+##### Day 11 Solution Part 2 
 
-- Answer: 13210366 
-- Timing: 0.0015192031860351562 
+- Answer: 18085004878 
+- Timing: 2.73844313621521 
 
 
 ```python
 """
-Solution to Advent of Code 2022 day 7 part 2
+Solution to Advent of Code 2022 day 11 part 2
 Solved by doing some magic
 """
 import time
 import sys
-from string import digits
+import numpy as np
 
 
 def solution(input_file):
 	with open(input_file,'r') as file:
-		entries = file.read().strip().splitlines()
-	dir_sizes = {}
-	checked_f = {}
-	crnt_dir = []
+		entries = [line.strip() for line in file.readlines()]
 
+	monkeys = {}
+	num_rounds = 10000
+	monk_count = 0
 	for line in entries:
-		ln = line.strip()
-		if ln.startswith('$ cd'):
-			if not crnt_dir:
-				crnt_dir.append('/')
-			elif ln.split(' ')[2] == '/':
-				crnt_dir = crnt_dir[0]
-			elif ln.split(' ')[2] == '..':
-				crnt_dir = crnt_dir[:-1]
-			else:
-				crnt_dir.append(ln.split(' ')[2])
-
-		elif ln[0] in digits:
-			dir_str = '\\'.join(crnt_dir)
-			if dir_str not in checked_f.keys():
-				checked_f[dir_str] = []
-			if ln.split(' ')[1] not in checked_f[dir_str]:
-				checked_f[dir_str].append(ln.split(' ')[1])
-				for f in range(len(crnt_dir)+1):
-					if '\\'.join(crnt_dir[:f]) not in dir_sizes.keys():
-						if '\\'.join(crnt_dir[:f]).strip() == '':
-							continue
-						dir_sizes['\\'.join(crnt_dir[:f])] = 0
-					dir_sizes['\\'.join(crnt_dir[:f])] += int(line.split(' ')[0])
-	sort_vals = sorted(dir_sizes.values())
-	space_needed = 30000000-(70000000-sort_vals[-1])
-	for n in sort_vals:
-		if n >= space_needed:
-			return n
-
-
-
-```
-<hr>
-
-### 🍷 Day 9 
-
-##### Day 8 Solution Part 1 
-
-- Answer: 1801 
-- Timing: 0.1352229118347168 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 8 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-import numpy as np
-
-
-def is_visible(row_ix, column_ix, grid):
-	if row_ix in [0, len(grid) - 1]:
-		return True
-	if column_ix in [0, len(grid[row_ix]) - 1]:
-		return True
-
-	value = grid[row_ix][column_ix]
-	row = grid[row_ix]
-	column = [grid[row_ix][column_ix] for row_ix in range(len(grid))]
-
-	left = all(x < value for x in row[:column_ix])
-	right = all(x < value for x in row[column_ix + 1:])
-	top = all(x < value for x in column[:row_ix])
-	bottom = all(x < value for x in column[row_ix + 1:])
-
-	return left or right or top or bottom
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read().splitlines()
-	grid = np.array([list(row.strip()) for row in entries]).astype('int')
-	vis = 0
-	for row_num, row in enumerate(grid):
-		for col_num, col in enumerate(row):
-			if is_visible(row_num, col_num, grid):
-				vis += 1
-	return vis
-
-
-
-```
-##### Day 8 Solution Part 2 
-
-- Answer: 209880 
-- Timing: 0.12220382690429688 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 8 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-import numpy as np
-
-
-def get_score(row_ix, column_ix, grid):
-    value = grid[row_ix][column_ix]
-    row = grid[row_ix]
-    column = [grid[row_ix][column_ix] for row_ix in range(len(grid))]
-
-    left, right, top, bottom = 0, 0, 0, 0
-
-    # Check left
-    for x in reversed(row[:column_ix]):
-        left += 1
-        if x >= value:
-            break
-
-    # Check right
-    for x in row[column_ix + 1:]:
-        right += 1
-        if x >= value:
-            break
-
-    # Check top
-    for x in reversed(column[:row_ix]):
-        top += 1
-        if x >= value:
-            break
-
-    # Check bottom
-    for x in column[row_ix + 1:]:
-        bottom += 1
-        if x >= value:
-            break
-
-    return left * right * top * bottom
-
-
-def solution(input_file):
-    with open(input_file, 'r') as file:
-        entries = file.read().splitlines()
-    grid = np.array([list(row.strip()) for row in entries]).astype('int')
-    score = []
-    for row_num, row in enumerate(grid):
-        score.extend(get_score(row_num, col_num, grid) for col_num, col in enumerate(row))
-    return max(score)
-
-
-
-```
-<hr>
-
-### 🎁 Day 10 
-
-##### Day 9 Solution Part 1 
-
-- Answer: 6023 
-- Timing: 0.011567831039428711 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 9 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-class Coordinates:
-	def __init__(self, x=0, y=0):
-		self.x = x
-		self.y = y
-		self.direction_mapping = {'D': (0, -1), 'U': (0, 1), 'R': (1, 0), 'L': (-1, 0)}
-
-	def move_with_direction(self, direction):
-		x_shift, y_shift = self.direction_mapping[direction]
-		self.x += x_shift
-		self.y += y_shift
-
-	def move_to_become_neighbor(self, other_knot):
-		if abs(self.x - other_knot.x) == 2 and abs(self.y - other_knot.y) == 2:
-			self.x = self.x + int((other_knot.x - self.x) / 2)
-			self.y = self.y + int((other_knot.y - self.y) / 2)
-		elif abs(self.x - other_knot.x) == 2:
-			self.x = self.x + int((other_knot.x - self.x) / 2)
-			self.y = other_knot.y
-		elif abs(self.y - other_knot.y) == 2:
-			self.x = other_knot.x
-			self.y = self.y + int((other_knot.y - self.y) / 2)
-
-	@property
-	def as_tuple(self):
-		return self.x, self.y
-
-	def __repr__(self):
-		return f"[{self.x}, {self.y}]"
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read().strip().splitlines()
-
-	number_knots = 2
-	knots = [Coordinates() for _ in range(number_knots)]
-	tail_coordinates_set = set()
-	for direction, number in [row.split() for row in entries]:
-		for _ in range(int(number)):
-			# this is our parent knot, rest are tail
-			knots[0].move_with_direction(direction)
-			# offset parent knot and move children to be all fuzzy wuzzy with the parent
-			for index, knot in enumerate(knots[1:number_knots], 1):
-				knot.move_to_become_neighbor(knots[index - 1])
-			# add tail knot to unique set
-			tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
-	return len(tail_coordinates_set)
-
-
-
-```
-##### Day 9 Solution Part 2 
-
-- Answer: 2533 
-- Timing: 0.03997063636779785 
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 9 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-class Coordinates:
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
-        self.direction_mapping = {'D': (0, -1), 'U': (0, 1), 'R': (1, 0), 'L': (-1, 0)}
-
-    def move_with_direction(self, direction):
-        x_shift, y_shift = self.direction_mapping[direction]
-        self.x += x_shift
-        self.y += y_shift
-
-    def move_to_become_neighbor(self, other_knot):
-        if abs(self.x - other_knot.x) == 2 and abs(self.y - other_knot.y) == 2:
-            self.x = self.x + int((other_knot.x - self.x) / 2)
-            self.y = self.y + int((other_knot.y - self.y) / 2)
-        elif abs(self.x - other_knot.x) == 2:
-            self.x = self.x + int((other_knot.x - self.x) / 2)
-            self.y = other_knot.y
-        elif abs(self.y - other_knot.y) == 2:
-            self.x = other_knot.x
-            self.y = self.y + int((other_knot.y - self.y) / 2)
-
-    @property
-    def as_tuple(self):
-        return self.x, self.y
-
-    def __repr__(self):
-        return f"[{self.x}, {self.y}]"
-
-
-def solution(input_file):
-    with open(input_file,'r') as file:
-        entries = file.read().strip().splitlines()
-
-    number_knots = 10
-    knots = [Coordinates() for _ in range(number_knots)]
-    tail_coordinates_set = set()
-    for direction, number in [row.split() for row in entries]:
-        for _ in range(int(number)):
-            # this is our parent knot, rest are tail
-            knots[0].move_with_direction(direction)
-            # offset parent knot and move children to be all fuzzy wuzzy with the parent
-            for index, knot in enumerate(knots[1:number_knots], 1):
-                knot.move_to_become_neighbor(knots[index - 1])
-            # add tail knot to unique set
-            tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
-    return len(tail_coordinates_set)
+		if not line.strip():
+			monk_count += 1
+			continue
+		if line.startswith("Monkey"):
+			monkeys[f"monkey__{monk_count}"] = {
+				"starting_items": [],
+				"operation": "",
+				"test": None, "true": "",
+				"false": "",
+				"monkeys_inspected": 0
+			}
+		if line.startswith("Starting"):
+			monkeys[f"monkey__{monk_count}"]['starting_items'] = [int(num) for num in line.split(":")[-1].strip().split(",")]
+		if line.startswith("Operation"):
+			monkeys[f"monkey__{monk_count}"]['operation'] = line.split(":")[-1].split()
+		if line.startswith("Test"):
+			monkeys[f"monkey__{monk_count}"]['test'] = line.split(":")[-1].strip().split()[-1]
+		if line.startswith("If true"):
+			monkeys[f"monkey__{monk_count}"]['true'] = line.split(":")[-1].strip()
+		if line.startswith("If false"):
+			monkeys[f"monkey__{monk_count}"]['false'] = line.split(":")[-1].strip()
+
+	worry_divisor = np.prod(
+		[int(test['test']) for test in monkeys.values()]
+	)
+
+	for _ in range(num_rounds):
+		for monkey, values in monkeys.items():
+			for _ in range(len(values["starting_items"])):
+				item = values["starting_items"].pop(0)
+				monkeys[monkey]["monkeys_inspected"] += 1
+				multiplier = int(values["operation"][-1]) if values["operation"][-1] != "old" else item
+				worry = eval(f"{item} {values['operation'][-2]} {multiplier}")
+				worry = int(worry % worry_divisor)
+				passes_test = values["true"] if worry % int(values["test"]) == 0 else values["false"]
+				monkeys[f"monkey__{int(passes_test.split()[-1])}"]['starting_items'].append(worry)
+	monkey1, monkey2 = sorted([monkey["monkeys_inspected"] for monkey in monkeys.values()], reverse=True)[:2]
+	return monkey1 * monkey2
 
 
 
