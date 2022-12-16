@@ -1,101 +1,109 @@
-import time
-from typing import Callable, List, Any, Union
-import datetime
 import os
-import pandas as pd
+import sys
+import datetime
+from subprocess import check_output
+import re
+import requests
+import random
 
 X_MAS_EMOJIES = [
     "👼", "⛄", "🎁", "🦌", "🎄", "🤶", "🎅", "❄️", "🌟", "🍪", "⛸️", "🔔", "✨", "🥛", "🍷",
     "🥞", "🕯", "🎶", "🧦", "🤍", "🥂", "🌿", "🍾", "🏂", "🧣", "🛷", "☕", "🍫", "👪"
 ]
-
-README_TEMPLATE_FILE_NAME = "readmetemplate"
-
-
-def run_func(func: Callable, input_file: str) -> List[Union[float, Any]]:
-    """
-    Runs a solution function with its daily input and times it.
-    Returns the solution time and output of the solution in an array.
-    :param func:
-    :param input_file:
-    :return:
-    """
-    start = time.time()
-    sol = func(input_file)
-    solution_time = time.time() - start
-    return [solution_time, sol]
-
-
-def get_new_lines(num_lines:int):
-    """
-    returns a string of new lines to easily create long string document.
-    :param num_lines:
-    :return:
-    """
-    out = ""
-    for _ in range(num_lines):
-        out += "\n"
-    return out
-
-
-def gen_mkd(dataframe: pd.DataFrame):
-    """
-    Takes a df and returns markdown to insert into the readme
-    :param dataframe:
-    :return:
-    """
-    text_out = f"# Solutions {get_new_lines(2)}"
-    emojies = list(set(X_MAS_EMOJIES))
-    for year_num in dataframe["year"].unique():
-        text_out += f"### Year {year}{get_new_lines(2)}"
-        df = dataframe.loc[dataframe["year"] == year_num]
-        group = df.groupby("day")
-        for day_name, group in group:
-            text_out += f"### {emojies[0]} Day {day_name} {get_new_lines(2)}"
-            emojies.remove(emojies[0])
-            for i, row in group.iterrows():
-                text_out += f"##### {' '.join(row['solution_name'].split('_')).title()} {get_new_lines(2)}"
-                text_out += f"- Answer: {row['result']} {get_new_lines(1)}"
-                text_out += f"- Timing: {row['timing']} {get_new_lines(1)}"
-                text_out += get_new_lines(2)
-                text_out += f"```python{get_new_lines(1)}{row['code_text']}{get_new_lines(1)}```{get_new_lines(1)}"
-            text_out += f"<hr>{get_new_lines(2)}"
-    text_out += f"{get_new_lines(2)}"
-    return text_out
+#random.shuffle(X_MAS_EMOJIES)
 
 
 if __name__ == '__main__':
-    results = []
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    new_path = f"{dir_path}/{datetime.datetime.now().year}"
+    # Get date
+    today_date = datetime.datetime.now()
+    if today_date.month != 12:
+        print("It's not December you silly goose!")
+        sys.exit()
+    current_year = today_date.year
+    current_day = today_date.day
+    
+    root_path = os.path.dirname(os.path.realpath(__file__))
 
-    if os.path.isdir(new_path):
-        dirs = sorted([x[0] for x in os.walk(new_path, topdown=True)])[1:]
-        for idx, day in enumerate(dirs, 1):
-            year = day.split("/")[-2]
-            print(day)
-            if day == "/Users/tristanrobinette/PycharmProjects/advent/2022/day_12":
-                break
-            for path, arr, files in os.walk(day):
-                day_num = path.split("/")[-1]
-                for file in files:
-                    if ".py" in file:
-                        sol_name = f"{day_num}_{file.split('.')[0]}"
-                        code_text = open(os.path.join(path, file), "r").read()
-                        input_file_path = os.path.join(path, 'input.txt')
-                        code_text = code_text[:code_text.find('if __name__ == "__main__":')]
-                        code = compile(code_text, '', 'exec')
-                        exec(code)
-                        results.append(
-                            [idx] + [year] + [sol_name] + run_func(solution, input_file_path) + [code_text]
-                        )
-                        del solution  # is this needed?
-                        del code  # is this needed?
-
-    result = pd.DataFrame(results, columns=["day", "year", "solution_name", "timing", "result", "code_text"])
-
-    base_template = open(f"{README_TEMPLATE_FILE_NAME}.md").read()
-    with open("readme.md", "r+") as f:
-        f.seek(0)
-        f.truncate()
-        f.write(f"{base_template}{get_new_lines(2)}{gen_mkd(result)}")
+    # Read the README
+    readme_file = os.path.join(root_path, 'readme.md')
+    with open(readme_file, 'r') as f:
+        readme = f.read()
+        readme = readme.splitlines()
+    
+    # Read available days
+    days_available = set()
+    for d in os.listdir(os.path.join(root_path, str(current_year))):
+        if d.startswith('day_'):
+            days_available.add(int(d.split('_')[-1]))
+    print(f"all days_available:", days_available)
+    
+    # READ known days
+    days_known = set()
+    readme_year = False
+    for line in readme:
+        # find year
+        match = re.findall(r'## Year (\d+)', line)
+        if match:
+            readme_year = current_year == int(match[0])
+        # create/find day
+        match = re.findall(r'### . Day (\d+)', line)
+        if match and readme_year:
+            days_known.add(int(match[0]))
+    print(f"days_known:", days_known)
+    last_day_known = max(days_known, default=0)
+    print(f"last_day_known:", last_day_known)
+    days_available -= days_known
+    print(f"unknown days_available:", days_available)
+    if len(days_available) == 0:
+        print(f"No new solutions found")
+        sys.exit()
+    
+    # Fill in the README
+    result = []
+    readme_year = False
+    readme_day = 0
+    for line in readme:
+        result.append(line)
+        # find year
+        match = re.findall(r'## Year (\d+)', line)
+        #print(match, line)
+        if match:
+            year = int(match[0])
+            random.Random(year).shuffle(X_MAS_EMOJIES)
+            readme_year = current_year == year
+            print(f"Year {year}")
+        # create/find day
+        match = re.findall(r'### . Day (\d+)', line)
+        if match:
+            readme_day = int(match[0])
+        # add new timing
+        #print(readme_year, readme_day)
+        if (line == '<hr>' or last_day_known == 0) and readme_year and readme_day == last_day_known:
+            result.append('')
+            for day in sorted(days_available):
+                print(f"Updating day {day} {current_year}")
+                # get day's name
+                emoji = X_MAS_EMOJIES[day % len(X_MAS_EMOJIES)]
+                result.append(f"### {emoji} Day {day}\n")
+                # Get each part
+                for part in range(1,2+1):
+                    result.append(f"#### Day {day} Solution Part {part}\n")
+                    day_path = os.path.join(root_path, str(current_year), f"day_{day}")
+                    solution_file = os.path.join(day_path, f"solution_part_{part}.py")
+                    input_file = os.path.join(day_path, f"input.txt")
+                    # Perform the run
+                    run_output = check_output(["python3", solution_file, input_file])
+                    run_output = run_output.decode('utf-8').strip()
+                    result += run_output.splitlines()
+                    # Add the approach
+                    with open(solution_file, 'r') as f:
+                        code_text = f.read()
+                    code_text = code_text[:code_text.find('if __name__ == "__main__":')].strip()
+                    result.append("\n\n```python")
+                    result += code_text.splitlines()
+                    result.append("```")
+                result.append('<hr>')
+    result.append('')
+    
+    with open(readme_file, 'w') as f:
+        f.write('\n'.join(result))
