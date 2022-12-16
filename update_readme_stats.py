@@ -79,8 +79,8 @@ if __name__ == '__main__':
         # add new timing
         #print(readme_year, readme_day)
         if (line == '<hr>' or last_day_known == 0) and readme_year and readme_day == last_day_known:
-            result.append('')
             for day in sorted(days_available):
+                result.append('')
                 print(f"Updating day {day} {current_year}")
                 # get day's name
                 emoji = X_MAS_EMOJIES[day % len(X_MAS_EMOJIES)]
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                     # Perform the run
                     run_output = check_output(["python3", solution_file, input_file])
                     run_output = run_output.decode('utf-8').strip()
-                    result += run_output.splitlines()
+                    result += run_output.splitlines()[-2:]
                     # Add the approach
                     with open(solution_file, 'r') as f:
                         code_text = f.read()
@@ -103,6 +103,7 @@ if __name__ == '__main__':
                     result += code_text.splitlines()
                     result.append("```")
                 result.append('<hr>')
+            last_day_known = -1
     result.append('')
     
     with open(readme_file, 'w') as f:
