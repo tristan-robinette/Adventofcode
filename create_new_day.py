@@ -28,7 +28,7 @@ if __name__ == '__main__':
     dir_path = os.path.dirname(os.path.realpath(__file__))
     
     for day in range(current_day, last_day+1):
-        day_path = os.path.join(dir_path, current_year, f"day_{day}")
+        day_path = os.path.join(dir_path, str(current_year), f"day_{day}")
 
         if os.path.isdir(day_path) and not args.overwrite:
             continue
