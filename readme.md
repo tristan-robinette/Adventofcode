@@ -35,10 +35,6 @@ Bonkers.
 
 <hr>
 
-
-
-# Solutions 
-
 ### Year 2022
 
 ### 🎅 Day 1
@@ -48,6 +44,9 @@ Bonkers.
 - **Answer**: 68292
 - **Timing**: 0.001828908920288086
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -70,11 +69,17 @@ def solution(input_file):
             elf_calories[str(current_elf)] = elf_calories.get(str(current_elf), 0) + int(line)
     return max(elf_calories.values())
 ```
+
+</details>
+
 #### Day 1 Solution Part 2
 
 - **Answer**: 203203
 - **Timing**: 0.001619100570678711
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -97,6 +102,9 @@ def solution(input_file):
             elf_calories[str(current_elf)] = elf_calories.get(str(current_elf), 0) + int(line)
     return sum(sorted(elf_calories.values(), reverse=True)[:3])
 ```
+
+</details>
+
 <hr>
 
 ### 🍾 Day 2
@@ -106,6 +114,9 @@ def solution(input_file):
 - **Answer**: 14531
 - **Timing**: 0.0012822151184082031
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -149,11 +160,17 @@ def solution(input_file):
                 score += points[player_2_choice] + 6
     return score
 ```
+
+</details>
+
 #### Day 2 Solution Part 2
 
 - **Answer**: 11258
 - **Timing**: 0.0012898445129394531
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -198,6 +215,9 @@ def solution(input_file):
                 score += points[player_2_choice] + 6
     return score
 ```
+
+</details>
+
 <hr>
 
 ### ❄️ Day 3
@@ -207,6 +227,9 @@ def solution(input_file):
 - **Answer**: 7917
 - **Timing**: 0.000698089599609375
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -233,11 +256,17 @@ def solution(input_file):
         ]
     )
 ```
+
+</details>
+
 #### Day 3 Solution Part 2
 
 - **Answer**: 2585
 - **Timing**: 0.0006871223449707031
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -264,6 +293,9 @@ def solution(input_file):
                 current_group = []
     return sum(alpha_dic[set.intersection(*group).pop()] for group in groups)
 ```
+
+</details>
+
 <hr>
 
 ### ✨ Day 4
@@ -273,6 +305,9 @@ def solution(input_file):
 - **Answer**: 518
 - **Timing**: 0.00406193733215332
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -302,11 +337,17 @@ def solution(input_file):
 			sol += 1
 	return sol
 ```
+
+</details>
+
 #### Day 4 Solution Part 2
 
 - **Answer**: 909
 - **Timing**: 0.0044710636138916016
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -336,6 +377,9 @@ def solution(input_file):
 			sol += 1
 	return sol
 ```
+
+</details>
+
 <hr>
 
 ### 🦌 Day 5
@@ -345,6 +389,9 @@ def solution(input_file):
 - **Answer**: TBVFVDZPN
 - **Timing**: 0.005964994430541992
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -385,11 +432,17 @@ def solution(input_file):
 			final_arr[to_col_num - 1] = [arr_value_move] + final_arr[to_col_num - 1]
 	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
 ```
+
+</details>
+
 #### Day 5 Solution Part 2
 
 - **Answer**: VLCWHTDSZ
 - **Timing**: 0.0019769668579101562
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -429,6 +482,9 @@ def solution(input_file):
 		final_arr[to_col_num - 1] = arr_value_move + final_arr[to_col_num - 1]
 	return "".join(arr[0] for arr in final_arr).replace("[","").replace("]","")
 ```
+
+</details>
+
 <hr>
 
 ### 🎁 Day 6
@@ -438,6 +494,9 @@ def solution(input_file):
 - **Answer**: 1142
 - **Timing**: 0.0006389617919921875
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -459,11 +518,17 @@ def solution(input_file):
 		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
 ```
+
+</details>
+
 #### Day 6 Solution Part 2
 
 - **Answer**: 2803
 - **Timing**: 0.001898050308227539
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -485,6 +550,9 @@ def solution(input_file):
 		if len(set(entries[i - min_char_before_marker: i])) == min_char_before_marker:
 			return i
 ```
+
+</details>
+
 <hr>
 
 ### 🤶 Day 7
@@ -494,6 +562,9 @@ def solution(input_file):
 - **Answer**: 1306611
 - **Timing**: 0.0024399757385253906
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -538,11 +609,17 @@ def solution(input_file):
 					dir_sizes['\\'.join(crnt_dir[:f])] += int(line.split(' ')[0])
 	return sum(n for n in dir_sizes.values() if n < 100000)
 ```
+
+</details>
+
 #### Day 7 Solution Part 2
 
 - **Answer**: 13210366
 - **Timing**: 0.002366304397583008
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -591,6 +668,9 @@ def solution(input_file):
 		if n >= space_needed:
 			return n
 ```
+
+</details>
+
 <hr>
 
 ### 🤍 Day 8
@@ -600,6 +680,9 @@ def solution(input_file):
 - **Answer**: 1801
 - **Timing**: 0.21929192543029785
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -640,11 +723,17 @@ def solution(input_file):
 				vis += 1
 	return vis
 ```
+
+</details>
+
 #### Day 8 Solution Part 2
 
 - **Answer**: 209880
 - **Timing**: 0.20448684692382812
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -699,6 +788,9 @@ def solution(input_file):
         score.extend(get_score(row_num, col_num, grid) for col_num, col in enumerate(row))
     return max(score)
 ```
+
+</details>
+
 <hr>
 
 ### 🎄 Day 9
@@ -708,6 +800,9 @@ def solution(input_file):
 - **Answer**: 6023
 - **Timing**: 0.018189668655395508
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -766,11 +861,17 @@ def solution(input_file):
 			tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
 	return len(tail_coordinates_set)
 ```
+
+</details>
+
 #### Day 9 Solution Part 2
 
 - **Answer**: 2533
 - **Timing**: 0.0621490478515625
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -829,6 +930,9 @@ def solution(input_file):
             tail_coordinates_set.add(knots[number_knots - 1].as_tuple)
     return len(tail_coordinates_set)
 ```
+
+</details>
+
 <hr>
 
 ### 🏂 Day 10
@@ -838,6 +942,9 @@ def solution(input_file):
 - **Answer**: 10760
 - **Timing**: 0.00040793418884277344
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -868,11 +975,17 @@ def solution(input_file):
 
 	return sol
 ```
+
+</details>
+
 #### Day 10 Solution Part 2
 
 - **Answer**: FPGPHFGH
 - **Timing**: 0.00026917457580566406
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -910,6 +1023,9 @@ def solution(input_file):
 
 	return 'FPGPHFGH'
 ```
+
+</details>
+
 <hr>
 
 ### 🌿 Day 11
@@ -919,6 +1035,9 @@ def solution(input_file):
 - **Answer**: 119715
 - **Timing**: 0.011977910995483398
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -971,11 +1090,17 @@ def solution(input_file):
 	monkey1, monkey2 = sorted([monkey["monkeys_inspected"] for monkey in monkeys.values()], reverse=True)[:2]
 	return monkey1 * monkey2
 ```
+
+</details>
+
 #### Day 11 Solution Part 2
 
 - **Answer**: 18085004878
 - **Timing**: 5.46789288520813
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
@@ -1034,317 +1159,184 @@ def solution(input_file):
 	monkey1, monkey2 = sorted([monkey["monkeys_inspected"] for monkey in monkeys.values()], reverse=True)[:2]
 	return monkey1 * monkey2
 ```
+
+</details>
+
 <hr>
 
-### 🥞 Day 12
+### Year 2023
 
-#### Day 12 Solution Part 1
 
-- **Answer**: 0
-- **Timing**: 0.0006530284881591797
+### ⛄ Day 1
 
+#### Day 1 Solution Part 1
+
+- **Answer**: 54644
+- **Timing**: 0.0014107227325439453
+
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
-Solution to Advent of Code 2022 day 12 part 1
+Solution to Advent of Code 2023 day 1 part 1
 Solved by doing some magic
 """
 import time
 import sys
-
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
 
 
 def solution(input_file):
 	with open(input_file,'r') as file:
 		entries = file.read()
 	entries = entries.strip()
-
-	# Parsing
+	result = 0
 	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
-
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
+	for line in entries:
+		numbers_in_line = [char for char in line if not char.isalpha()]
+		result += int(f"{numbers_in_line[0]}{numbers_in_line[-1]}")
+	return result
 ```
-#### Day 12 Solution Part 2
 
-- **Answer**: 0
-- **Timing**: 0.0001971721649169922
+</details>
 
+
+#### Day 1 Solution Part 2
+
+- **Answer**: 53348
+- **Timing**: 0.013229846954345703
+
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
-Solution to Advent of Code 2022 day 12 part 2
+Solution to Advent of Code 2023 day 1 part 2
 Solved by doing some magic
 """
 import time
+import re
 import sys
 
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
-
+word_digit_pairs = [
+    ('one', '1'),
+    ('two', '2'),
+    ('three', '3'),
+    ('four', '4'),
+    ('five', '5'),
+    ('six', '6'),
+    ('seven', '7'),
+    ('eight', '8'),
+    ('nine', '9')
+]
 
 def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
-
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
-
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    result = 0
+    entries = entries.splitlines()
+    for line in entries:
+        # has to be a better way than this???
+        numbers_found = []
+        for word, digit in word_digit_pairs:
+            matches = re.finditer(word, line)
+            numbers_found.extend((digit, match.start()) for match in matches)
+        [numbers_found.append((char, pos)) for pos, char in enumerate(line) if not char.isalpha()]
+        numbers_in_line = sorted(numbers_found,key=lambda x: x[1])
+        result += int(f"{numbers_in_line[0][0]}{numbers_in_line[-1][0]}")
+    return result
 ```
+
+</details>
+
+
 <hr>
 
-### 🛷 Day 13
+### 🎁 Day 2
 
-#### Day 13 Solution Part 1
+#### Day 2 Solution Part 1
 
-- **Answer**: 0
-- **Timing**: 0.00020122528076171875
+- **Answer**: 2061
+- **Timing**: 0.0006868839263916016
 
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
-Solution to Advent of Code 2022 day 13 part 1
+Solution to Advent of Code 2023 day 2 part 1
 Solved by doing some magic
 """
 import time
 import sys
 
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
-
-
 def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
+    with open(input_file, 'r') as file:
+        entries = file.read().strip().splitlines()
 
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
+    # Setup limits
+    config = {"green": 13, "blue": 14, "red": 12}
+    invalid_games = set()
+    result = 0
+    for line in entries:
+        game, game_sets = line.split(":")
+        game_id = int(game.split()[-1])
+        for gs in game_sets.strip().split(";"):
+            # Check if any cube is over config limit and track that gameID as invalid
+            if any(config[color] < int(num) for num, color in (r.split() for r in gs.split(","))):
+                invalid_games.add(game_id)
+                break
+        # Remaining games are valid
+        if game_id not in invalid_games:
+            result += game_id
 
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
+    return result
 ```
-#### Day 13 Solution Part 2
 
-- **Answer**: 0
-- **Timing**: 0.00019693374633789062
+</details>
 
+
+#### Day 2 Solution Part 2
+
+- **Answer**: 72596
+- **Timing**: 0.0009760856628417969
+
+
+<details>
+<summary>View code</summary>
 
 ```python
 """
-Solution to Advent of Code 2022 day 13 part 2
+Solution to Advent of Code 2023 day 2 part 2
 Solved by doing some magic
 """
 import time
 import sys
-
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
+from functools import reduce
+import math
 
 
 def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
+	with open(input_file, 'r') as file:
+		entries = file.read().strip().splitlines()
 
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
-
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
+	result = 0
+	for line in entries:
+		game, game_sets = line.split(":")
+		config = {}
+		for gs in game_sets.strip().split(";"):
+			for num, color in (r.split() for r in gs.split(",")):
+				config[color] = max(config.get(color,0), int(num))
+		power = reduce(lambda x, y: x * y, config.values(), 1)
+		result += power
+	return result
 ```
+
+</details>
+
+
 <hr>
-
-### 🌟 Day 14
-
-#### Day 14 Solution Part 1
-
-- **Answer**: 0
-- **Timing**: 0.00020599365234375
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 14 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
-
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
-
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
-```
-#### Day 14 Solution Part 2
-
-- **Answer**: 0
-- **Timing**: 0.00019884109497070312
-
-
-```python
-"""
-Solution to Advent of Code 2022 day 14 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-# tools
-import re
-
-import numpy as np
-import scipy.ndimage
-
-from collections import Counter
-from functools import cache
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
-
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	#entries = [re.findall(r'(\d+)',e)[0] for e in entries]
-	entries = np.array(entries)
-	print(entries)
-
-	# Solving
-	kern = np.ones((3), dtype=int)
-	def conv_func(arr):
-		arr = arr.reshape((3))
-		return arr[1]
-	entries = scipy.ndimage.filters.generic_filter(entries, conv_func, footprint=kern, mode='constant', cval=0)
-	
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
-```
-<hr>
-
