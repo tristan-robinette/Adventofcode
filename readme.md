@@ -1166,7 +1166,6 @@ def solution(input_file):
 
 ### Year 2023
 
-
 ### ⛄ Day 1
 
 #### Day 1 Solution Part 1
@@ -1334,6 +1333,145 @@ def solution(input_file):
 		power = reduce(lambda x, y: x * y, config.values(), 1)
 		result += power
 	return result
+```
+
+</details>
+
+
+<hr>
+
+
+### 🦌 Day 3
+
+#### Day 3 Solution Part 1
+
+- **Answer**: 535078
+- **Timing**: 0.013290166854858398
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 3 part 1
+Solved by doing some magic
+"""
+
+import itertools
+import time
+import sys
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+
+    result = 0
+    entries = entries.strip()
+
+    # Parsing
+    entries = entries.splitlines()
+
+    for i, line in enumerate(entries):
+        current_number = ""
+        add_number = False
+
+        for idx, char in enumerate(line):
+            if char.isdigit():
+                current_number += char
+                # for each character in the 3x3 grid around the digit
+                for x, y in itertools.product(
+                        range(max(0, i - 1), min(len(entries), i + 2)),
+                        range(max(0, idx - 1), min(len(line), idx + 2))
+                ):
+                    # exclude the digit itself
+                    if x == i and y == idx:
+                        continue
+                    # if the character is not a digit and not a dot its a symbol
+                    if entries[x][y] != "." and not entries[x][y].isdigit():
+                        add_number = True
+            elif add_number and current_number != "":
+                result += int(current_number)
+                add_number = False
+                current_number = ""
+            else:
+                add_number = False
+                current_number = ""
+        if add_number and current_number != "":
+            result += int(current_number)
+    return result
+```
+
+</details>
+
+
+#### Day 3 Solution Part 2
+
+- **Answer**: 75312571
+- **Timing**: 0.019262075424194336
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 3 part 2
+Solved by doing some magic
+"""
+
+import itertools
+import time
+import sys
+from collections import defaultdict
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+
+    entries = entries.strip()
+
+    # Parsing
+    entries = entries.splitlines()
+    gears = defaultdict(list)
+    for i, line in enumerate(entries):
+        current_number = ""
+        # symbols are tuple of (symbol, x, y)
+        adjacent_symbols = set()
+
+        for idx, char in enumerate(line):
+            if char.isdigit():
+                current_number += char
+                # same eval as p1
+                for x, y in itertools.product(
+		                range(max(0, i - 1), min(len(entries), i + 2)),
+		                range(max(0, idx - 1), min(len(line), idx + 2))
+                ):
+                    if x == i and y == idx:
+                        continue
+                    if entries[x][y] != "." and not entries[x][y].isdigit():
+                        # track position
+                        adjacent_symbols.add((entries[x][y], x, y))
+
+            elif len(adjacent_symbols) != 0 and current_number != "":
+                for symbol, x, y in adjacent_symbols:
+                    if symbol == "*":
+                        gears[(x, y)].append(int(current_number))
+                adjacent_symbols = set()
+                current_number = ""
+            else:
+                adjacent_symbols = set()
+                current_number = ""
+        if len(adjacent_symbols) != 0 and current_number != "":
+            for symbol, x, y in adjacent_symbols:
+                if symbol == "*":
+                    gears[(x, y)].append(int(current_number))
+    # Sum only if 2 exact parts
+    return sum(
+        values[0] * values[1] for values in gears.values() if len(values) == 2
+    )
 ```
 
 </details>

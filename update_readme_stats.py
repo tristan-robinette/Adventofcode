@@ -31,15 +31,20 @@ def get_readme_text(filename='readme.md'):
 def does_day_already_exists_for_year(readme, path) -> bool:
     year_exists = False
     day_exists = False
+    year_index = 0
     year = path.split("/")[-2]
     day = path.split("/")[-1]
     for line in readme.splitlines():
         if year_match := re.findall(r'## Year (\d+)', line):
+            year_index = readme.index(line)
             if str(year_match[0]) == str(year):
                 year_exists = True
-        if day_match := re.findall(r'## Day (\d+)', line):
-            if str(day_match[0]) == str(day):
-                day_exists = True
+                break
+    if year_exists:
+        for line in readme[year_index:].splitlines():
+            if day_match := re.findall(r'## Day (\d+)', line):
+                if str(day_match[0]) == str(day):
+                    day_exists = True
     return year_exists is True and day_exists is True
 
 def get_day_existing_text(readme, path):  # sourcery skip: use-named-expression
@@ -71,7 +76,6 @@ def get_day_existing_text(readme, path):  # sourcery skip: use-named-expression
 def get_text_for_new_day(path):
     year = path.split("/")[-2]
     day = path.split("/")[-1]
-    print(f"Updating day {day} {year}")
     # get day's name
     emoji = X_MAS_EMOJIES[int(day) % len(X_MAS_EMOJIES)]
     result = ['', f"### {emoji} Day {day}\n"]
@@ -99,10 +103,8 @@ def get_text_for_new_day(path):
     return result
 
 
-def build_day(readme, year, day) -> list:
+def build_day(year, day) -> list:
     path_to_dir = os.path.join(ROOT_PATH, str(year), str(day))
-    if does_day_already_exists_for_year(readme, path_to_dir):
-        return get_day_existing_text(readme, path_to_dir)
     return get_text_for_new_day(path_to_dir)
 
 def add_dropdown_to_day(day_lines:list) -> list:
@@ -142,10 +144,19 @@ def main(readme_template_name=None, code_as_dropdown=True, build_toc=True):
 
     for year_to_build in get_years_to_build():
         days_available = get_available_days_to_process(year_to_build)
-        for day in days_available:
-            if int(day) == 1:
+        for i, day in enumerate(days_available):
+            emoji = X_MAS_EMOJIES[int(day) % len(X_MAS_EMOJIES)]
+            base_log = f"{emoji} YEAR: {year_to_build} | DAY: {day}"
+            # if first solve for year add in year header
+            if i == 0:
                 output_readme += [f'### Year {year_to_build}', '']
-            readme_lines = build_day(current_readme, year_to_build, day)
+            path_to_dir = os.path.join(ROOT_PATH, str(year_to_build), str(day))
+            if does_day_already_exists_for_year(current_readme, path_to_dir):
+                print(f"{base_log} =>  EXISTS")
+                readme_lines = get_day_existing_text(current_readme, path_to_dir)
+            else:
+                print(f"{base_log} =>  BUILDING")
+                readme_lines = build_day(year_to_build, day)
             readme_lines = add_day_plugins(readme_lines, code_as_dropdown, build_toc)
             output_readme += readme_lines
 
