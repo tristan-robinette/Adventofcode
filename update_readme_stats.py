@@ -127,20 +127,29 @@ def add_dropdown_to_day(day_lines:list) -> list:
         out.append(line)
     return out
 
-def add_toc_to_day(day_lines:list) -> list:
-    # todo implement
-    return day_lines
+def build_toc_link(day, days_in_toc:list, toc_config:dict, year_to_build):
+    badge_name = f"{year_to_build} Day {day} Badge"
+    endpoint = f"{year_to_build}%20Day%20{day}-none"
+    qs = "".join(f"{name}={value}&" for name, value in toc_config.items())
+    link_to_sol = f"#day-{day}"
+    if day in days_in_toc:
+        # append '-' and the number when multiple headings with same name.
+        link_to_sol += f"-{len([d for d in days_in_toc if d == day])}"
+    return f"[![{badge_name}](https://img.shields.io/badge/{endpoint}?{qs})]({link_to_sol})"
 
-def add_day_plugins(readme_lines:list, code_as_dropdown=True, build_toc=True) -> list:
+
+def add_day_plugins(readme_lines:list, code_as_dropdown=True) -> list:
     if code_as_dropdown:
         readme_lines = add_dropdown_to_day(readme_lines)
-    if build_toc:
-        readme_lines = add_toc_to_day(readme_lines)
     return readme_lines
 
-def main(readme_template_name=None, code_as_dropdown=True, build_toc=True):
+
+def main(readme_template_name=None, code_as_dropdown=True, build_toc=True, toc_config=None):
     current_readme = get_readme_text()
     output_readme = []
+    toc_config = toc_config or DEFAULT_TOC_CONFIG
+    days_in_toc = []
+    toc = ["#### Jump to solution", ''] if build_toc else []
 
     for year_to_build in get_years_to_build():
         days_available = get_available_days_to_process(year_to_build)
@@ -157,8 +166,16 @@ def main(readme_template_name=None, code_as_dropdown=True, build_toc=True):
             else:
                 print(f"{base_log} =>  BUILDING")
                 readme_lines = build_day(year_to_build, day)
-            readme_lines = add_day_plugins(readme_lines, code_as_dropdown, build_toc)
+            readme_lines = add_day_plugins(readme_lines, code_as_dropdown)
             output_readme += readme_lines
+            if build_toc:
+                result = build_toc_link(day, days_in_toc, toc_config, year_to_build)
+                days_in_toc.append(day)
+                toc.append(result)
+        toc.append("")
+
+    if build_toc:
+        toc.extend(["<hr>", ''])
 
     readme_template = ''
     if readme_template_name:
@@ -167,8 +184,16 @@ def main(readme_template_name=None, code_as_dropdown=True, build_toc=True):
         ).read_text()
     readme_file = os.path.join(ROOT_PATH, 'readme.md')
     with open(readme_file, 'w') as f:
-        f.write(readme_template + '\n'.join(output_readme))
+        f.write(readme_template + '\n'.join(toc + output_readme))
 
 
 if __name__ == '__main__':
-    main(readme_template_name='readmetemplate.md')
+    DEFAULT_TOC_CONFIG = {
+        # 'r' would be for R, 'javascript' for JS see more: https://simpleicons.org/
+        "logo": "python",
+        "logoColor": "f43f5e",
+        # The background and text color of the button (don't include hashtag for hex)
+        "color": "065f46",
+        "labelColor": "white",
+    }
+    main(readme_template_name='readmetemplate.md', toc_config=DEFAULT_TOC_CONFIG)
