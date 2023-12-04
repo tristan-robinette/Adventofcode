@@ -131,7 +131,7 @@ def build_toc_link(day, days_in_toc:list, toc_config:dict, year_to_build):
     badge_name = f"{year_to_build} Day {day} Badge"
     endpoint = f"{year_to_build}%20Day%20{day}-none"
     qs = "".join(f"{name}={value}&" for name, value in toc_config.items())
-    link_to_sol = f"#day-{day}"
+    link_to_sol = f"#-day-{day}"
     if day in days_in_toc:
         # append '-' and the number when multiple headings with same name.
         link_to_sol += f"-{len([d for d in days_in_toc if d == day])}"
