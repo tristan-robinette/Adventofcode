@@ -37,22 +37,22 @@ Bonkers.
 
 #### Jump to solution
 
-[![2022 Day 1 Badge](https://img.shields.io/badge/2022%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-1)
-[![2022 Day 2 Badge](https://img.shields.io/badge/2022%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-2)
-[![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-3)
-[![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-4)
-[![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-5)
-[![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-6)
-[![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-7)
-[![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-8)
-[![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-9)
-[![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-10)
-[![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-11)
+[![2022 Day 1 Badge](https://img.shields.io/badge/2022%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1)
+[![2022 Day 2 Badge](https://img.shields.io/badge/2022%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2)
+[![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3)
+[![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4)
+[![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5)
+[![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6)
+[![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7)
+[![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8)
+[![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9)
+[![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10)
+[![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11)
 
-[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-1-1)
-[![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-2-1)
-[![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-3-1)
-[![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#day-4-1)
+[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+[![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
+[![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
+[![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
 
 <hr>
 
