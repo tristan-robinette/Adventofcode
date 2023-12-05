@@ -3,10 +3,9 @@ Script to create directories to get gud at advent of code.
 """
 import datetime
 import os
+import pathlib
 import sys
 import shutil
-import calendar
-import re
 import argparse
 
 
@@ -25,8 +24,8 @@ if __name__ == '__main__':
     current_day = today_date.day + args.anticipation
     last_day = 25 if args.all else current_day
     
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    
+    dir_path = pathlib.Path(__file__).parent.parent
+
     for day in range(current_day, last_day+1):
         day_path = os.path.join(dir_path, str(current_year), f"day_{day}")
 
@@ -45,7 +44,7 @@ if __name__ == '__main__':
         # create the solutions
         for part in range(1,2+1):
             solution_file_path = os.path.join(day_path, f"solution_part_{part}.py")
-            template_path = os.path.join(dir_path, "solution_template.py")
+            template_path = os.path.join(dir_path, f"{pathlib.Path(__file__).parent}/templates/solution_template.py")
             shutil.copyfile(template_path, solution_file_path)
             
             with open(solution_file_path, 'r') as f:

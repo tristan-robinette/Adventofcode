@@ -8,9 +8,7 @@ X_MAS_EMOJIES = [
     "🥞", "🕯", "🎶", "🧦", "🤍", "🥂", "🌿", "🍾", "🏂", "🧣", "🛷", "☕", "🍫", "👪"
 ]
 
-
-ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-
+ROOT_PATH = pathlib.Path(__file__).parent.parent
 
 def get_years_to_build():
     return [d for d in os.listdir(os.path.join(ROOT_PATH)) if d.startswith("20")]
@@ -180,7 +178,7 @@ def main(readme_template_name=None, code_as_dropdown=True, build_toc=True, toc_c
     readme_template = ''
     if readme_template_name:
         readme_template = pathlib.Path(
-            os.path.join(ROOT_PATH, readme_template_name)
+            os.path.join(ROOT_PATH, f"{pathlib.Path(__file__).parent}/templates/{readme_template_name}")
         ).read_text()
     readme_file = os.path.join(ROOT_PATH, 'readme.md')
     with open(readme_file, 'w') as f:
