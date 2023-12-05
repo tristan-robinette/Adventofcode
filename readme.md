@@ -53,6 +53,7 @@ Bonkers.
 [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
 [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
+[![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
 
 <hr>
 
@@ -1575,6 +1576,129 @@ def solution(input_file):
 			for ix in range(num_matches):
 				mapping[ix + i + 1] = mapping.get(ix + i + 1, 0) + 1
 	return sum(mapping.values())
+```
+
+</details>
+
+
+<hr>
+
+
+### 🤶 Day 5
+
+#### Day 5 Solution Part 1
+
+- **Answer**: 199602917
+- **Timing**: 0.0005702972412109375
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 5 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+
+	# Parsing
+	entries = entries.strip()
+	parts = entries.split("\n\n")
+	seeds = [int(seed) for seed in parts[0].split(":")[-1].strip().split()]
+	mapping = {}
+
+	for m in parts[1:]:
+		lines = m.splitlines()
+		name = lines[0].strip(":")
+		soil_ranges = []
+		seed_ranges = []
+
+		for line in lines[1:]:
+			destination_range_start, source_range_start, length = map(int, line.split())
+			soil_ranges.append((destination_range_start, destination_range_start + length - 1))
+			seed_ranges.append((source_range_start, source_range_start + length - 1))
+		mapping[name] = {'soil_ranges': soil_ranges, 'seed_ranges': seed_ranges}
+
+	locations = []
+	for seed in seeds:
+		seed_map = {}
+		current_seed_number = seed
+		for i, name in enumerate(mapping):
+			seed_ranges = mapping[name].get("seed_ranges")
+			soil_ranges = mapping[name].get("soil_ranges")
+			for seed_range, target_range in zip(seed_ranges, soil_ranges):
+				# min, max of range is stored as tuple.
+				if seed_range[0] <= current_seed_number <= seed_range[1]:
+					current_seed_number += target_range[0] - seed_range[0]
+					break
+			seed_map[name] = current_seed_number
+		locations.append(seed_map["humidity-to-location map"])
+	return min(locations)
+```
+
+</details>
+
+
+#### Day 5 Solution Part 2
+
+- **Answer**: 2254686
+- **Timing**: 14.684205055236816
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 5 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def parse_map(conversion_map_raw):
+    map_lst = conversion_map_raw.splitlines()
+    conversion_rules = []
+    for row in map_lst[1:]:
+        dest, source, range_length = [int(num) for num in row.split()]
+        conversion_rules.append((dest, source, range_length))
+    return conversion_rules
+
+def find_location(seed, maps):
+    current = seed
+    for rule in maps:
+        for dest, source, range_length in rule:
+            if source <= current < source + range_length:
+                current = current - source + dest
+                break
+    return current
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        seeds_raw, *conversion_maps_raw = file.read().split("\n\n")
+    seeds = [int(num) for num in seeds_raw.split()[1:]]
+    maps = list(map(parse_map, conversion_maps_raw))
+
+    seeds_ranges = [
+        (seeds[i - 1], seeds[i - 1] + seed)
+        for i, seed in enumerate(seeds)
+        if i % 2 == 1
+    ]
+    maps = [[(end, s, seed_range) for s, end, seed_range in rule] for rule in maps][::-1]
+    location = 0
+    while True:
+        seed = find_location(location, maps)
+        if any(s <= seed < end for s, end in seeds_ranges):
+            return location
+        location += 1
 ```
 
 </details>
