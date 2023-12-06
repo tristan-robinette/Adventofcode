@@ -54,6 +54,7 @@ Bonkers.
 [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
 [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
+[![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
 
 <hr>
 
@@ -1583,7 +1584,6 @@ def solution(input_file):
 
 <hr>
 
-
 ### 🤶 Day 5
 
 #### Day 5 Solution Part 1
@@ -1699,6 +1699,86 @@ def solution(input_file):
         if any(s <= seed < end for s, end in seeds_ranges):
             return location
         location += 1
+```
+
+</details>
+
+
+<hr>
+
+
+### 🎅 Day 6
+
+#### Day 6 Solution Part 1
+
+- **Answer**: 3316275
+- **Timing**: 0.00021004676818847656
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 6 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = entries.strip().splitlines()
+	simulations = []
+
+	time_entries = [int(e) for e in entries[0].split(":")[-1].strip().split()]
+	distance_entries = [int(e) for e in entries[1].split(":")[-1].strip().split()]
+	for i, (time_entry, record_distance) in enumerate(zip(time_entries, distance_entries)):
+		for time_held in range(time_entry):
+			if (time_held * (time_entry - time_held)) > record_distance:
+				if len(simulations) < len(time_entries):
+					simulations.append(0)
+				simulations[i] += 1
+	return reduce(lambda x, y: x * y, simulations, 1)
+```
+
+</details>
+
+
+#### Day 6 Solution Part 2
+
+- **Answer**: 27102791
+- **Timing**: 3.1184029579162598
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 6 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = entries.strip().splitlines()
+	time_entry = int("".join(entries[0].split(":")[-1].strip().split()))
+	record_distance = int("".join(entries[1].split(":")[-1].strip().split()))
+	return sum(
+		time_held * (time_entry - time_held) > record_distance
+		for time_held in range(time_entry)
+	)
 ```
 
 </details>
