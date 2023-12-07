@@ -55,6 +55,7 @@ Bonkers.
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
 [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
 [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
+[![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
 
 <hr>
 
@@ -1706,7 +1707,6 @@ def solution(input_file):
 
 <hr>
 
-
 ### 🎅 Day 6
 
 #### Day 6 Solution Part 1
@@ -1779,6 +1779,108 @@ def solution(input_file):
 		time_held * (time_entry - time_held) > record_distance
 		for time_held in range(time_entry)
 	)
+```
+
+</details>
+
+
+<hr>
+
+
+### ❄️ Day 7
+
+#### Day 7 Solution Part 1
+
+- **Answer**: 251106089
+- **Timing**: 0.003312826156616211
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 7 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from collections import Counter
+
+
+def get_numerical_card(card):
+    if card.isdigit():
+        return int(card)
+    return {'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card]
+
+
+def get_hand_strength(hand):
+    trick_strength = tuple(sorted(Counter(hand).values(), reverse=True))
+    return trick_strength, hand
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    hands = []
+    for line in entries.splitlines():
+        hand, bid = line.split()
+        hands.append((tuple(get_numerical_card(c) for c in hand), int(bid)))
+    hands.sort(key=lambda p: get_hand_strength(p[0]))
+    return sum(int(pair[1]) * (i + 1) for i, pair in enumerate(hands))
+```
+
+</details>
+
+
+#### Day 7 Solution Part 2
+
+- **Answer**: 249620106
+- **Timing**: 0.004178762435913086
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 7 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from collections import Counter
+
+def get_numerical_card(card):
+    if card.isdigit():
+        return int(card)
+    return {'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card]
+
+
+def get_hand_strength(hand):
+    num_jokers = hand.count(11)
+    hand_without_jokers = tuple(card for card in hand if card != 11)
+    trick_strength = list(sorted(Counter(hand_without_jokers).values(), reverse=True))
+    if not trick_strength:
+        trick_strength = (5,)
+    else:
+        trick_strength[0] += num_jokers
+    trick_strength = tuple(trick_strength)
+
+    new_hand = tuple(1 if card == 11 else card for card in hand)
+    return trick_strength, new_hand
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    hands = []
+    for line in entries.splitlines():
+        hand, bid = line.split()
+        hands.append((tuple(get_numerical_card(c) for c in hand), int(bid)))
+    hands.sort(key=lambda p: get_hand_strength(p[0]))
+    return sum(int(pair[1]) * (i + 1) for i, pair in enumerate(hands))
 ```
 
 </details>
