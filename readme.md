@@ -57,6 +57,7 @@ Bonkers.
 [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
 [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
 [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
+[![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
 
 <hr>
 
@@ -1888,7 +1889,6 @@ def solution(input_file):
 
 <hr>
 
-
 ### 🌟 Day 8
 
 #### Day 8 Solution Part 1
@@ -1993,6 +1993,102 @@ def solution(input_file):
     for i in [iter_graph(mapping, rl_set, s, ending_nodes) for s in starting_nodes]:
         sol = sol * i // gcd(sol, i)
     return sol
+```
+
+</details>
+
+
+<hr>
+
+
+### 🍪 Day 9
+
+#### Day 9 Solution Part 1
+
+- **Answer**: 1974232246
+- **Timing**: 0.006377220153808594
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 9 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	rows = [[int(val) for val in e.split()] for e in entries.splitlines()]
+	sol = 0
+	for row in rows:
+		history = [row]
+		while set(history[-1]) != {0}:
+			# while last row is not all 0 simply grab the latest row history and subtract the next value
+			history.append(
+				[history[-1][ix + 1] - v for ix, v in enumerate(history[-1]) if ix + 1 < len(history[-1])]
+			)
+		while len(history) > 1:
+			l = history.pop(-1)
+			d = l[-1]
+			history[-1].append(history[-1][-1] + d)
+		sol += history[0][-1]
+
+	return sol
+```
+
+</details>
+
+
+#### Day 9 Solution Part 2
+
+- **Answer**: 928
+- **Timing**: 0.00623321533203125
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 9 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	rows = [[int(val) for val in e.split()] for e in entries.splitlines()]
+	sol = 0
+	for row in rows:
+		row = row[::-1]
+		history = [row]
+		while set(history[-1]) != {0}:
+			# while last row is not all 0 simply grab the latest row history and subtract the next value
+			history.append(
+				[history[-1][ix + 1] - v for ix, v in enumerate(history[-1]) if ix + 1 < len(history[-1])]
+			)
+		while len(history) > 1:
+			l = history.pop(-1)
+			d = l[-1]
+			history[-1].append(history[-1][-1] + d)
+		sol += history[0][-1]
+
+	return sol
 ```
 
 </details>
