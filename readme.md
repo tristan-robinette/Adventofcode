@@ -49,7 +49,9 @@ Bonkers.
 [![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10)
 [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11)
 
-[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+[![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+
+[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
 [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
 [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
@@ -58,6 +60,8 @@ Bonkers.
 [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
 [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
 [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
+[![2023 Day 10 Badge](https://img.shields.io/badge/2023%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10-1)
+[![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1)
 
 <hr>
 
@@ -1190,6 +1194,90 @@ def solution(input_file):
 
 <hr>
 
+### Year 2024
+
+
+### ⛄ Day 1
+
+#### Day 1 Solution Part 1
+
+- **Answer**: 1646452
+- **Timing**: 0.0006911754608154297
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2024 day 1 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+	entries = entries.splitlines()
+	left_side = []
+	right_side = []
+	for entry in entries:
+		left, right = entry.split()
+		left_side.append(int(left))
+		right_side.append(int(right))
+	left_side.sort()
+	right_side.sort()
+	return sum(r - l if r > l else l - r for (r, l) in zip(right_side, left_side))
+```
+
+</details>
+
+
+#### Day 1 Solution Part 2
+
+- **Answer**: 23609874
+- **Timing**: 0.0005071163177490234
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2024 day 1 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file, 'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+	entries = entries.splitlines()
+	counter = {}
+	sol = 0
+	for entry in entries:
+		left, right = entry.split()
+		if right not in counter:
+			counter[right] = 1
+		else:
+			counter[right] += 1
+	for entry in entries:
+		left, right = entry.split()
+		sol += counter.get(left, 0) * int(left)
+
+	return sol
+```
+
+</details>
+
+
+<hr>
 ### Year 2023
 
 ### ⛄ Day 1
@@ -2000,7 +2088,6 @@ def solution(input_file):
 
 <hr>
 
-
 ### 🍪 Day 9
 
 #### Day 9 Solution Part 1
@@ -2089,6 +2176,202 @@ def solution(input_file):
 		sol += history[0][-1]
 
 	return sol
+```
+
+</details>
+
+
+<hr>
+
+
+### ⛸️ Day 10
+
+#### Day 10 Solution Part 1
+
+- **Answer**: 0
+- **Timing**: 3.4809112548828125e-05
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	entries = [int(e) for e in entries]
+	print(entries)
+
+	# Solving
+	sol = 0
+	for i,n in enumerate(entries):
+		sol += 1
+		
+
+	return sol
+```
+
+</details>
+
+
+#### Day 10 Solution Part 2
+
+- **Answer**: 0
+- **Timing**: 4.38690185546875e-05
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	entries = [int(e) for e in entries]
+	print(entries)
+
+	# Solving
+	sol = 0
+	for i,n in enumerate(entries):
+		sol += 1
+		
+
+	return sol
+```
+
+</details>
+
+
+<hr>
+
+### 🔔 Day 11
+
+#### Day 11 Solution Part 1
+
+- **Answer**: 9543156
+- **Timing**: 0.26601719856262207
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import pandas as pd
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+
+    # Parsing
+    df = pd.DataFrame([list(char) for char in entries.strip().splitlines()])
+    # get locations of columns that are 'blank'
+    dot_columns = df.columns[df.eq('.').all()]
+    # get locations of rows that are 'blank'
+    dot_rows = df.index[df.eq('.').all(axis=1)]
+
+    # turn locations into tuples.
+    positions = [(i, j) for i, row in enumerate(df.values.tolist()) for j, val in enumerate(row) if val == '#']
+
+    sol = 0
+    # iter over positions
+    for i, pos1 in enumerate(positions, 1):
+        for pos2 in positions[i:]:
+            # get diff in rows/cols
+            d = abs(pos2[0] - pos1[0]) + abs(pos2[1] - pos1[1])
+            # adjust for duplicated galaxy locations along cols and rows
+            for col in dot_columns:
+                if pos1[1] <= col <= pos2[1] or pos2[1] <= col <= pos1[1]:
+                    d += 1
+            for row in dot_rows:
+                if pos1[0] <= row <= pos2[0] or pos2[0] <= row <= pos1[0]:
+                    d += 1
+            sol += d
+    return sol
+```
+
+</details>
+
+
+#### Day 11 Solution Part 2
+
+- **Answer**: 625243292686
+- **Timing**: 0.3073110580444336
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+import pandas as pd
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+
+    # Parsing
+    df = pd.DataFrame([list(char) for char in entries.strip().splitlines()])
+    # get locations of columns that are 'blank'
+    dot_columns = df.columns[df.eq('.').all()]
+    # get locations of rows that are 'blank'
+    dot_rows = df.index[df.eq('.').all(axis=1)]
+
+    # turn locations into tuples.
+    positions = [(i, j) for i, row in enumerate(df.values.tolist()) for j, val in enumerate(row) if val == '#']
+
+    sol = 0
+    # iter over positions
+    for i, pos1 in enumerate(positions, 1):
+        for pos2 in positions[i:]:
+            # get diff in rows/cols
+            d = abs(pos2[0] - pos1[0]) + abs(pos2[1] - pos1[1])
+            # adjust for duplicated galaxy locations along cols and rows
+            for col in dot_columns:
+                if pos1[1] <= col <= pos2[1] or pos2[1] <= col <= pos1[1]:
+                    d += 1000000 - 1
+            for row in dot_rows:
+                if pos1[0] <= row <= pos2[0] or pos2[0] <= row <= pos1[0]:
+                    d += 1000000 - 1
+            sol += d
+    return sol
 ```
 
 </details>
