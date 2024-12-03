@@ -5,15 +5,13 @@ Solved by doing some magic
 import time
 import sys
 import re
+from operator import mul
 
 
 def solution(input_file):
 	with open(input_file, 'r') as file:
 		entries = file.read()
-
 	do = True
-	mul_pattern = r"mul\((\d+),(\d+)\)"
-
 	entries = entries.strip()
 	offset = 0
 	runnable_mem = ""
@@ -26,11 +24,10 @@ def solution(input_file):
 			offset = i
 		if do:
 			runnable_mem += entries[i]
-	sol = 0
-	for match in re.finditer(mul_pattern, runnable_mem):
-		arg1, arg2 = map(int, match.groups())
-		sol += arg1 * arg2
-	return sol
+	return sum(
+		mul(*map(int, match.groups()))
+		for match in re.finditer(r"mul\((\d+),(\d+)\)", runnable_mem.strip())
+	)
 
 
 if __name__ == "__main__":
