@@ -51,13 +51,17 @@ Bonkers.
 
 [![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
 [![2024 Day 2 Badge](https://img.shields.io/badge/2024%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
+[![2024 Day 3 Badge](https://img.shields.io/badge/2024%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
+[![2024 Day 4 Badge](https://img.shields.io/badge/2024%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
+[![2024 Day 5 Badge](https://img.shields.io/badge/2024%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
+[![2024 Day 6 Badge](https://img.shields.io/badge/2024%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
 
 [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
 [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2)
-[![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
-[![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
-[![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
-[![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
+[![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2)
+[![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2)
+[![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-2)
+[![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-2)
 [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
 [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
 [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
@@ -1358,6 +1362,428 @@ def solution(input_file):
 		power = reduce(lambda x, y: x * y, config.values(), 1)
 		result += power
 	return result
+```
+
+</details>
+
+
+<hr>
+
+### 🦌 Day 3
+
+#### Day 3 Solution Part 1
+
+- **Answer**: 535078
+- **Timing**: 0.013290166854858398
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 3 part 1
+Solved by doing some magic
+"""
+
+import itertools
+import time
+import sys
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+
+    result = 0
+    entries = entries.strip()
+
+    # Parsing
+    entries = entries.splitlines()
+
+    for i, line in enumerate(entries):
+        current_number = ""
+        add_number = False
+
+        for idx, char in enumerate(line):
+            if char.isdigit():
+                current_number += char
+                # for each character in the 3x3 grid around the digit
+                for x, y in itertools.product(
+                        range(max(0, i - 1), min(len(entries), i + 2)),
+                        range(max(0, idx - 1), min(len(line), idx + 2))
+                ):
+                    # exclude the digit itself
+                    if x == i and y == idx:
+                        continue
+                    # if the character is not a digit and not a dot its a symbol
+                    if entries[x][y] != "." and not entries[x][y].isdigit():
+                        add_number = True
+            elif add_number and current_number != "":
+                result += int(current_number)
+                add_number = False
+                current_number = ""
+            else:
+                add_number = False
+                current_number = ""
+        if add_number and current_number != "":
+            result += int(current_number)
+    return result
+```
+
+</details>
+
+
+#### Day 3 Solution Part 2
+
+- **Answer**: 75312571
+- **Timing**: 0.019262075424194336
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 3 part 2
+Solved by doing some magic
+"""
+
+import itertools
+import time
+import sys
+from collections import defaultdict
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+
+    entries = entries.strip()
+
+    # Parsing
+    entries = entries.splitlines()
+    gears = defaultdict(list)
+    for i, line in enumerate(entries):
+        current_number = ""
+        # symbols are tuple of (symbol, x, y)
+        adjacent_symbols = set()
+
+        for idx, char in enumerate(line):
+            if char.isdigit():
+                current_number += char
+                # same eval as p1
+                for x, y in itertools.product(
+		                range(max(0, i - 1), min(len(entries), i + 2)),
+		                range(max(0, idx - 1), min(len(line), idx + 2))
+                ):
+                    if x == i and y == idx:
+                        continue
+                    if entries[x][y] != "." and not entries[x][y].isdigit():
+                        # track position
+                        adjacent_symbols.add((entries[x][y], x, y))
+
+            elif len(adjacent_symbols) != 0 and current_number != "":
+                for symbol, x, y in adjacent_symbols:
+                    if symbol == "*":
+                        gears[(x, y)].append(int(current_number))
+                adjacent_symbols = set()
+                current_number = ""
+            else:
+                adjacent_symbols = set()
+                current_number = ""
+        if len(adjacent_symbols) != 0 and current_number != "":
+            for symbol, x, y in adjacent_symbols:
+                if symbol == "*":
+                    gears[(x, y)].append(int(current_number))
+    # Sum only if 2 exact parts
+    return sum(
+        values[0] * values[1] for values in gears.values() if len(values) == 2
+    )
+```
+
+</details>
+
+
+<hr>
+
+### 🎄 Day 4
+
+#### Day 4 Solution Part 1
+
+- **Answer**: 23847
+- **Timing**: 0.0009360313415527344
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 4 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+	sol = 0
+	for card in entries.splitlines():
+		winning_set, your_set = card.split(":")[-1].strip().split("|")
+		# Check if shared values between lists
+		if inner := set(winning_set.split()).intersection(set(your_set.split())):
+			sol += reduce(lambda x, y: x * 2, list(inner)[:-1], 1)
+	return sol
+```
+
+</details>
+
+
+#### Day 4 Solution Part 2
+
+- **Answer**: 8570000
+- **Timing**: 1.7587859630584717
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 4 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+	# will store the card number + copies of the card
+	mapping = {k+1:1 for k in range(len(entries.splitlines()))}
+	for i, card in enumerate(entries.splitlines(), 1):
+		# can set the initial instance of the card.
+		num_matches = 0
+		winning_set, your_set = card.split(":")[-1].strip().split("|")
+		# Check if shared values between lists
+		if inner := set(winning_set.split()).intersection(set(your_set.split())):
+			num_matches = len(inner)
+			# for each match add the new instance to mapping
+			for ix in range(num_matches):
+				mapping[ix + i + 1] = mapping.get(ix + i + 1, 0) + 1
+		# for copies of card, clone forwards
+		for _ in range(mapping.get(i) - 1):
+			for ix in range(num_matches):
+				mapping[ix + i + 1] = mapping.get(ix + i + 1, 0) + 1
+	return sum(mapping.values())
+```
+
+</details>
+
+
+<hr>
+
+### 🤶 Day 5
+
+#### Day 5 Solution Part 1
+
+- **Answer**: 199602917
+- **Timing**: 0.0005702972412109375
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 5 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+
+	# Parsing
+	entries = entries.strip()
+	parts = entries.split("\n\n")
+	seeds = [int(seed) for seed in parts[0].split(":")[-1].strip().split()]
+	mapping = {}
+
+	for m in parts[1:]:
+		lines = m.splitlines()
+		name = lines[0].strip(":")
+		soil_ranges = []
+		seed_ranges = []
+
+		for line in lines[1:]:
+			destination_range_start, source_range_start, length = map(int, line.split())
+			soil_ranges.append((destination_range_start, destination_range_start + length - 1))
+			seed_ranges.append((source_range_start, source_range_start + length - 1))
+		mapping[name] = {'soil_ranges': soil_ranges, 'seed_ranges': seed_ranges}
+
+	locations = []
+	for seed in seeds:
+		seed_map = {}
+		current_seed_number = seed
+		for i, name in enumerate(mapping):
+			seed_ranges = mapping[name].get("seed_ranges")
+			soil_ranges = mapping[name].get("soil_ranges")
+			for seed_range, target_range in zip(seed_ranges, soil_ranges):
+				# min, max of range is stored as tuple.
+				if seed_range[0] <= current_seed_number <= seed_range[1]:
+					current_seed_number += target_range[0] - seed_range[0]
+					break
+			seed_map[name] = current_seed_number
+		locations.append(seed_map["humidity-to-location map"])
+	return min(locations)
+```
+
+</details>
+
+
+#### Day 5 Solution Part 2
+
+- **Answer**: 2254686
+- **Timing**: 14.684205055236816
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 5 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def parse_map(conversion_map_raw):
+    map_lst = conversion_map_raw.splitlines()
+    conversion_rules = []
+    for row in map_lst[1:]:
+        dest, source, range_length = [int(num) for num in row.split()]
+        conversion_rules.append((dest, source, range_length))
+    return conversion_rules
+
+def find_location(seed, maps):
+    current = seed
+    for rule in maps:
+        for dest, source, range_length in rule:
+            if source <= current < source + range_length:
+                current = current - source + dest
+                break
+    return current
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        seeds_raw, *conversion_maps_raw = file.read().split("\n\n")
+    seeds = [int(num) for num in seeds_raw.split()[1:]]
+    maps = list(map(parse_map, conversion_maps_raw))
+
+    seeds_ranges = [
+        (seeds[i - 1], seeds[i - 1] + seed)
+        for i, seed in enumerate(seeds)
+        if i % 2 == 1
+    ]
+    maps = [[(end, s, seed_range) for s, end, seed_range in rule] for rule in maps][::-1]
+    location = 0
+    while True:
+        seed = find_location(location, maps)
+        if any(s <= seed < end for s, end in seeds_ranges):
+            return location
+        location += 1
+```
+
+</details>
+
+
+<hr>
+
+### 🎅 Day 6
+
+#### Day 6 Solution Part 1
+
+- **Answer**: 3316275
+- **Timing**: 0.00021004676818847656
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 6 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = entries.strip().splitlines()
+	simulations = []
+
+	time_entries = [int(e) for e in entries[0].split(":")[-1].strip().split()]
+	distance_entries = [int(e) for e in entries[1].split(":")[-1].strip().split()]
+	for i, (time_entry, record_distance) in enumerate(zip(time_entries, distance_entries)):
+		for time_held in range(time_entry):
+			if (time_held * (time_entry - time_held)) > record_distance:
+				if len(simulations) < len(time_entries):
+					simulations.append(0)
+				simulations[i] += 1
+	return reduce(lambda x, y: x * y, simulations, 1)
+```
+
+</details>
+
+
+#### Day 6 Solution Part 2
+
+- **Answer**: 27102791
+- **Timing**: 3.1184029579162598
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 6 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	# Parsing
+	entries = entries.strip().splitlines()
+	time_entry = int("".join(entries[0].split(":")[-1].strip().split()))
+	record_distance = int("".join(entries[1].split(":")[-1].strip().split()))
+	return sum(
+		time_held * (time_entry - time_held) > record_distance
+		for time_held in range(time_entry)
+	)
 ```
 
 </details>
