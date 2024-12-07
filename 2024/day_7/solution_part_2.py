@@ -19,9 +19,7 @@ def evaluate_left_to_right(expression):
         elif operator == '*':
             result *= number
         elif operator == '||':
-            l_side = evaluate_left_to_right(" ".join(tokens[:i]))
-            expression = f"{l_side}{tokens[i + 1]} {' '.join(tokens[i + 2:])}"
-            return evaluate_left_to_right(expression)
+            result = int(f"{result}{number}")
     return result
 
 
