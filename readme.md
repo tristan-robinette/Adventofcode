@@ -55,6 +55,8 @@ Bonkers.
 [![2024 Day 4 Badge](https://img.shields.io/badge/2024%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
 [![2024 Day 5 Badge](https://img.shields.io/badge/2024%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
 [![2024 Day 6 Badge](https://img.shields.io/badge/2024%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
+[![2024 Day 7 Badge](https://img.shields.io/badge/2024%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
+[![2024 Day 8 Badge](https://img.shields.io/badge/2024%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
 
 [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
 [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2)
@@ -62,8 +64,8 @@ Bonkers.
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2)
 [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-2)
 [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-2)
-[![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
-[![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
+[![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-2)
+[![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-2)
 [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
 [![2023 Day 10 Badge](https://img.shields.io/badge/2023%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10-1)
 [![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1)
@@ -1784,6 +1786,218 @@ def solution(input_file):
 		time_held * (time_entry - time_held) > record_distance
 		for time_held in range(time_entry)
 	)
+```
+
+</details>
+
+
+<hr>
+
+### ❄️ Day 7
+
+#### Day 7 Solution Part 1
+
+- **Answer**: 251106089
+- **Timing**: 0.003312826156616211
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 7 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+from collections import Counter
+
+
+def get_numerical_card(card):
+    if card.isdigit():
+        return int(card)
+    return {'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card]
+
+
+def get_hand_strength(hand):
+    trick_strength = tuple(sorted(Counter(hand).values(), reverse=True))
+    return trick_strength, hand
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    hands = []
+    for line in entries.splitlines():
+        hand, bid = line.split()
+        hands.append((tuple(get_numerical_card(c) for c in hand), int(bid)))
+    hands.sort(key=lambda p: get_hand_strength(p[0]))
+    return sum(int(pair[1]) * (i + 1) for i, pair in enumerate(hands))
+```
+
+</details>
+
+
+#### Day 7 Solution Part 2
+
+- **Answer**: 249620106
+- **Timing**: 0.004178762435913086
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 7 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from collections import Counter
+
+def get_numerical_card(card):
+    if card.isdigit():
+        return int(card)
+    return {'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card]
+
+
+def get_hand_strength(hand):
+    num_jokers = hand.count(11)
+    hand_without_jokers = tuple(card for card in hand if card != 11)
+    trick_strength = list(sorted(Counter(hand_without_jokers).values(), reverse=True))
+    if not trick_strength:
+        trick_strength = (5,)
+    else:
+        trick_strength[0] += num_jokers
+    trick_strength = tuple(trick_strength)
+
+    new_hand = tuple(1 if card == 11 else card for card in hand)
+    return trick_strength, new_hand
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    hands = []
+    for line in entries.splitlines():
+        hand, bid = line.split()
+        hands.append((tuple(get_numerical_card(c) for c in hand), int(bid)))
+    hands.sort(key=lambda p: get_hand_strength(p[0]))
+    return sum(int(pair[1]) * (i + 1) for i, pair in enumerate(hands))
+```
+
+</details>
+
+
+<hr>
+
+### 🌟 Day 8
+
+#### Day 8 Solution Part 1
+
+- **Answer**: 20093
+- **Timing**: 0.0021800994873046875
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 8 part 1
+Solved by doing some magic
+"""
+import itertools
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	rl_set, nodes = entries.split("\n\n")
+
+	mapping = {}
+	nodes = nodes.splitlines()
+	for node in nodes:
+		ele, maps_set = node.split("=")
+		ele = ele.strip()
+		# build a map of the graph with Left/Right options.
+		# Ex: QRX = (XNN,TCJ) -> {'QRX': {'L': 'XNN', 'R': 'TCJ'}}
+		maps_set = maps_set.strip().strip("(").strip(")").split(",")
+		ele_mapping = {char: maps_set[ix].strip() for ix, char in enumerate(["L","R"])}
+		mapping[ele] = ele_mapping
+
+	# @Tristan next time read the question properly.
+	current_key = "AAA"
+	target_key = "ZZZ"
+	# cycle through instructions and map until solution is found.
+	for sol, p in enumerate(itertools.cycle(rl_set)):
+		if current_key == target_key:
+			return sol
+		current_key = mapping[current_key][p]
+```
+
+</details>
+
+
+#### Day 8 Solution Part 2
+
+- **Answer**: 22103062509257
+- **Timing**: 0.014040231704711914
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 8 part 2
+Solved by doing some magic
+"""
+import itertools
+import time
+import sys
+from math import gcd
+
+def iter_graph(graph,rl_set, start_node, ends):
+    # cycle through instructions and map until solution is found.
+    for sol, p in enumerate(itertools.cycle(rl_set)):
+        if start_node in ends:
+            return sol
+        start_node = graph[start_node][p]
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+
+    # Parsing
+    rl_set, nodes = entries.split("\n\n")
+
+    mapping = {}
+    nodes = nodes.splitlines()
+    for node in nodes:
+        ele, maps_set = node.split("=")
+        ele = ele.strip()
+        # build a map of the graph with Left/Right options.
+        # Ex: QRX = (XNN,TCJ) -> {'QRX': {'L': 'XNN', 'R': 'TCJ'}}
+        maps_set = maps_set.strip().strip("(").strip(")").split(",")
+        ele_mapping = {char: maps_set[ix].strip() for ix, char in enumerate(["L","R"])}
+        mapping[ele] = ele_mapping
+
+    starting_nodes = [node for node in mapping if node[-1] == 'A']
+    ending_nodes = [node for node in mapping if node[-1] == 'Z']
+    sol = 1
+    for i in [iter_graph(mapping, rl_set, s, ending_nodes) for s in starting_nodes]:
+        sol = sol * i // gcd(sol, i)
+    return sol
 ```
 
 </details>
