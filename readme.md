@@ -49,7 +49,9 @@ Bonkers.
 [![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10)
 [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11)
 
-[![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+[![2025 Day 1 Badge](https://img.shields.io/badge/2025%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+
+[![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
 [![2024 Day 2 Badge](https://img.shields.io/badge/2024%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
 [![2024 Day 3 Badge](https://img.shields.io/badge/2024%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
 [![2024 Day 4 Badge](https://img.shields.io/badge/2024%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
@@ -57,8 +59,11 @@ Bonkers.
 [![2024 Day 6 Badge](https://img.shields.io/badge/2024%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1)
 [![2024 Day 7 Badge](https://img.shields.io/badge/2024%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1)
 [![2024 Day 8 Badge](https://img.shields.io/badge/2024%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1)
+[![2024 Day 9 Badge](https://img.shields.io/badge/2024%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
+[![2024 Day 10 Badge](https://img.shields.io/badge/2024%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10-1)
+[![2024 Day 11 Badge](https://img.shields.io/badge/2024%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1)
 
-[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
+[![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-3)
 [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2)
 [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2)
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2)
@@ -66,9 +71,8 @@ Bonkers.
 [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-2)
 [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-2)
 [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-2)
-[![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1)
-[![2023 Day 10 Badge](https://img.shields.io/badge/2023%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10-1)
-[![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1)
+[![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-2)
+[![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-2)
 
 <hr>
 
@@ -1201,6 +1205,103 @@ def solution(input_file):
 
 <hr>
 
+### Year 2025
+
+
+### ⛄ Day 1
+
+#### Day 1 Solution Part 1
+
+- **Answer**: 1145
+- **Timing**: 0.037992000579833984
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 1 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# tupes ma goops
+	entries = [(line[0], int(line[1:])) for line in entries.splitlines()]
+	# Solving
+	dial = 50
+	sol = 0
+	for i, (direction, distance) in enumerate(entries):
+		for j in range(distance):
+			if direction == 'L':
+				dial -= 1
+				if dial < 0:
+					dial = 99
+			else:
+				dial += 1
+				if dial > 99:
+					dial = 0
+		sol += dial == 0
+	return sol
+```
+
+</details>
+
+
+#### Day 1 Solution Part 2
+
+- **Answer**: 6561
+- **Timing**: 0.05561232566833496
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 1 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# tupes ma goops
+	entries = [(line[0], int(line[1:])) for line in entries.splitlines()]
+	# Solving
+	dial = 50
+	sol = 0
+	for i, (direction, distance) in enumerate(entries):
+		# my sloppy range means p2 is easy. yay.
+		for j in range(distance):
+			if direction == 'L':
+				dial -= 1
+				if dial < 0:
+					dial = 99
+			else:
+				dial += 1
+				if dial > 99:
+					dial = 0
+			sol += dial == 0
+	return sol
+```
+
+</details>
+
+
+<hr>
 ### Year 2024
 
 ### ⛄ Day 1
@@ -1997,6 +2098,296 @@ def solution(input_file):
     sol = 1
     for i in [iter_graph(mapping, rl_set, s, ending_nodes) for s in starting_nodes]:
         sol = sol * i // gcd(sol, i)
+    return sol
+```
+
+</details>
+
+
+<hr>
+
+### 🍪 Day 9
+
+#### Day 9 Solution Part 1
+
+- **Answer**: 1974232246
+- **Timing**: 0.006377220153808594
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 9 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	rows = [[int(val) for val in e.split()] for e in entries.splitlines()]
+	sol = 0
+	for row in rows:
+		history = [row]
+		while set(history[-1]) != {0}:
+			# while last row is not all 0 simply grab the latest row history and subtract the next value
+			history.append(
+				[history[-1][ix + 1] - v for ix, v in enumerate(history[-1]) if ix + 1 < len(history[-1])]
+			)
+		while len(history) > 1:
+			l = history.pop(-1)
+			d = l[-1]
+			history[-1].append(history[-1][-1] + d)
+		sol += history[0][-1]
+
+	return sol
+```
+
+</details>
+
+
+#### Day 9 Solution Part 2
+
+- **Answer**: 928
+- **Timing**: 0.00623321533203125
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 9 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	rows = [[int(val) for val in e.split()] for e in entries.splitlines()]
+	sol = 0
+	for row in rows:
+		row = row[::-1]
+		history = [row]
+		while set(history[-1]) != {0}:
+			# while last row is not all 0 simply grab the latest row history and subtract the next value
+			history.append(
+				[history[-1][ix + 1] - v for ix, v in enumerate(history[-1]) if ix + 1 < len(history[-1])]
+			)
+		while len(history) > 1:
+			l = history.pop(-1)
+			d = l[-1]
+			history[-1].append(history[-1][-1] + d)
+		sol += history[0][-1]
+
+	return sol
+```
+
+</details>
+
+
+<hr>
+
+### ⛸️ Day 10
+
+#### Day 10 Solution Part 1
+
+- **Answer**: 0
+- **Timing**: 3.4809112548828125e-05
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	entries = [int(e) for e in entries]
+	print(entries)
+
+	# Solving
+	sol = 0
+	for i,n in enumerate(entries):
+		sol += 1
+		
+
+	return sol
+```
+
+</details>
+
+
+#### Day 10 Solution Part 2
+
+- **Answer**: 0
+- **Timing**: 4.38690185546875e-05
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	entries = [int(e) for e in entries]
+	print(entries)
+
+	# Solving
+	sol = 0
+	for i,n in enumerate(entries):
+		sol += 1
+		
+
+	return sol
+```
+
+</details>
+
+
+<hr>
+
+### 🔔 Day 11
+
+#### Day 11 Solution Part 1
+
+- **Answer**: 9543156
+- **Timing**: 0.26601719856262207
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import pandas as pd
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+
+    # Parsing
+    df = pd.DataFrame([list(char) for char in entries.strip().splitlines()])
+    # get locations of columns that are 'blank'
+    dot_columns = df.columns[df.eq('.').all()]
+    # get locations of rows that are 'blank'
+    dot_rows = df.index[df.eq('.').all(axis=1)]
+
+    # turn locations into tuples.
+    positions = [(i, j) for i, row in enumerate(df.values.tolist()) for j, val in enumerate(row) if val == '#']
+
+    sol = 0
+    # iter over positions
+    for i, pos1 in enumerate(positions, 1):
+        for pos2 in positions[i:]:
+            # get diff in rows/cols
+            d = abs(pos2[0] - pos1[0]) + abs(pos2[1] - pos1[1])
+            # adjust for duplicated galaxy locations along cols and rows
+            for col in dot_columns:
+                if pos1[1] <= col <= pos2[1] or pos2[1] <= col <= pos1[1]:
+                    d += 1
+            for row in dot_rows:
+                if pos1[0] <= row <= pos2[0] or pos2[0] <= row <= pos1[0]:
+                    d += 1
+            sol += d
+    return sol
+```
+
+</details>
+
+
+#### Day 11 Solution Part 2
+
+- **Answer**: 625243292686
+- **Timing**: 0.3073110580444336
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 11 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+import pandas as pd
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+
+    # Parsing
+    df = pd.DataFrame([list(char) for char in entries.strip().splitlines()])
+    # get locations of columns that are 'blank'
+    dot_columns = df.columns[df.eq('.').all()]
+    # get locations of rows that are 'blank'
+    dot_rows = df.index[df.eq('.').all(axis=1)]
+
+    # turn locations into tuples.
+    positions = [(i, j) for i, row in enumerate(df.values.tolist()) for j, val in enumerate(row) if val == '#']
+
+    sol = 0
+    # iter over positions
+    for i, pos1 in enumerate(positions, 1):
+        for pos2 in positions[i:]:
+            # get diff in rows/cols
+            d = abs(pos2[0] - pos1[0]) + abs(pos2[1] - pos1[1])
+            # adjust for duplicated galaxy locations along cols and rows
+            for col in dot_columns:
+                if pos1[1] <= col <= pos2[1] or pos2[1] <= col <= pos1[1]:
+                    d += 1000000 - 1
+            for row in dot_rows:
+                if pos1[0] <= row <= pos2[0] or pos2[0] <= row <= pos1[0]:
+                    d += 1000000 - 1
+            sol += d
     return sol
 ```
 
@@ -2901,90 +3292,6 @@ def solution(input_file):
 			d = l[-1]
 			history[-1].append(history[-1][-1] + d)
 		sol += history[0][-1]
-
-	return sol
-```
-
-</details>
-
-
-<hr>
-
-### ⛸️ Day 10
-
-#### Day 10 Solution Part 1
-
-- **Answer**: 0
-- **Timing**: 3.4809112548828125e-05
-
-
-<details>
-<summary>View code</summary>
-
-```python
-"""
-Solution to Advent of Code 2023 day 11 part 1
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
-
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	print(entries)
-
-	# Solving
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
-
-	return sol
-```
-
-</details>
-
-
-#### Day 10 Solution Part 2
-
-- **Answer**: 0
-- **Timing**: 4.38690185546875e-05
-
-
-<details>
-<summary>View code</summary>
-
-```python
-"""
-Solution to Advent of Code 2023 day 11 part 2
-Solved by doing some magic
-"""
-import time
-import sys
-
-
-def solution(input_file):
-	with open(input_file,'r') as file:
-		entries = file.read()
-	entries = entries.strip()
-
-	# Parsing
-	entries = entries.splitlines()
-	entries = [int(e) for e in entries]
-	print(entries)
-
-	# Solving
-	sol = 0
-	for i,n in enumerate(entries):
-		sol += 1
-		
 
 	return sol
 ```
