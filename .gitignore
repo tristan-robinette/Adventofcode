@@ -2,3 +2,4 @@
 *.idea
 *.venv
 venv
+results_cache.json
