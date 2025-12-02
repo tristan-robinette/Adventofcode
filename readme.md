@@ -50,9 +50,10 @@ Bonkers.
 [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11)
 
 [![2025 Day 1 Badge](https://img.shields.io/badge/2025%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1)
+[![2025 Day 2 Badge](https://img.shields.io/badge/2025%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
 
 [![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2)
-[![2024 Day 2 Badge](https://img.shields.io/badge/2024%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1)
+[![2024 Day 2 Badge](https://img.shields.io/badge/2024%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2)
 [![2024 Day 3 Badge](https://img.shields.io/badge/2024%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1)
 [![2024 Day 4 Badge](https://img.shields.io/badge/2024%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1)
 [![2024 Day 5 Badge](https://img.shields.io/badge/2024%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1)
@@ -64,7 +65,7 @@ Bonkers.
 [![2024 Day 11 Badge](https://img.shields.io/badge/2024%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1)
 
 [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-3)
-[![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2)
+[![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-3)
 [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2)
 [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2)
 [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-2)
@@ -1207,7 +1208,6 @@ def solution(input_file):
 
 ### Year 2025
 
-
 ### ⛄ Day 1
 
 #### Day 1 Solution Part 1
@@ -1302,6 +1302,93 @@ def solution(input_file):
 
 
 <hr>
+
+### 🎁 Day 2
+
+#### Day 2 Solution Part 1
+
+- **Answer**: 2061
+- **Timing**: 0.0006868839263916016
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 2 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read().strip().splitlines()
+
+    # Setup limits
+    config = {"green": 13, "blue": 14, "red": 12}
+    invalid_games = set()
+    result = 0
+    for line in entries:
+        game, game_sets = line.split(":")
+        game_id = int(game.split()[-1])
+        for gs in game_sets.strip().split(";"):
+            # Check if any cube is over config limit and track that gameID as invalid
+            if any(config[color] < int(num) for num, color in (r.split() for r in gs.split(","))):
+                invalid_games.add(game_id)
+                break
+        # Remaining games are valid
+        if game_id not in invalid_games:
+            result += game_id
+
+    return result
+```
+
+</details>
+
+
+#### Day 2 Solution Part 2
+
+- **Answer**: 72596
+- **Timing**: 0.0009760856628417969
+
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2023 day 2 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import reduce
+import math
+
+
+def solution(input_file):
+	with open(input_file, 'r') as file:
+		entries = file.read().strip().splitlines()
+
+	result = 0
+	for line in entries:
+		game, game_sets = line.split(":")
+		config = {}
+		for gs in game_sets.strip().split(";"):
+			for num, color in (r.split() for r in gs.split(",")):
+				config[color] = max(config.get(color,0), int(num))
+		power = reduce(lambda x, y: x * y, config.values(), 1)
+		result += power
+	return result
+```
+
+</details>
+
+
+<hr>
+
 ### Year 2024
 
 ### ⛄ Day 1
