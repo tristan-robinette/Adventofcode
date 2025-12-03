@@ -31,6 +31,7 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 3 Badge](https://img.shields.io/badge/2025%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3) 
  [![2025 Day 2 Badge](https://img.shields.io/badge/2025%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2) 
  [![2025 Day 1 Badge](https://img.shields.io/badge/2025%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1) 
  
@@ -55,7 +56,7 @@ Bonkers.
  [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
  [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5) 
  [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4) 
- [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3) 
+ [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1) 
  [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1) 
  [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1) 
  
@@ -68,12 +69,89 @@ Bonkers.
  [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
  [![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1) 
  [![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1) 
- [![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1) 
+ [![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2) 
  [![2022 Day 2 Badge](https://img.shields.io/badge/2022%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2) 
  [![2022 Day 1 Badge](https://img.shields.io/badge/2022%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2) 
 
 
 ### Year 2025
+
+### 🦌 Day 3
+
+#### Day 3 Solution part 1
+
+- **Answer**: 17376
+- **Timing**: 0.17606210708618164
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 3 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	sol = 0
+	for i, bank in enumerate(entries):
+		bank_max = 0
+		for j in range(len(str(bank))):
+			for ij in range(len(bank[j + 1:])):
+				bank_max = max(bank_max, int(f"{bank[j]}{bank[ij + j + 1]}"))
+		sol += bank_max
+	return sol
+```
+</details>
+
+#### Day 3 Solution part 2
+
+- **Answer**: 172119830406258
+- **Timing**: 0.0047910213470458984
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 3 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file, 'r') as file:
+		entries = file.read().strip().splitlines()
+
+	sol = 0
+	batteries_needed = 12
+	for bank in entries:
+		stack = []
+		remaining = len(bank)
+		for digit in bank:
+			d = int(digit)
+			while stack and stack[-1] < d and len(stack) - 1 + remaining >= batteries_needed:
+				stack.pop()
+			if len(stack) < batteries_needed:
+				stack.append(d)
+			remaining -= 1
+		sol += int("".join(map(str, stack)))
+	return sol
+```
+</details>
+
+<hr>
 
 ### 🎁 Day 2
 
