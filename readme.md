@@ -31,6 +31,7 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 4 Badge](https://img.shields.io/badge/2025%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4) 
  [![2025 Day 3 Badge](https://img.shields.io/badge/2025%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3) 
  [![2025 Day 2 Badge](https://img.shields.io/badge/2025%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2) 
  [![2025 Day 1 Badge](https://img.shields.io/badge/2025%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1) 
@@ -55,7 +56,7 @@ Bonkers.
  [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
  [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
  [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5) 
- [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4) 
+ [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1) 
  [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1) 
  [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1) 
  [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1) 
@@ -68,13 +69,135 @@ Bonkers.
  [![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
  [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
  [![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1) 
- [![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1) 
+ [![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2) 
  [![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2) 
  [![2022 Day 2 Badge](https://img.shields.io/badge/2022%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2) 
  [![2022 Day 1 Badge](https://img.shields.io/badge/2022%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-2) 
 
 
 ### Year 2025
+
+### 🎄 Day 4
+
+#### Day 4 Solution part 1
+
+- **Answer**: 1505
+- **Timing**: 0.01735091209411621
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 4 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	# Solving
+	sol = 0
+	directions = [
+		(0, 1),  # Right
+		(0, -1),  # Left
+		(1, 0),  # Down
+		(-1, 0),  # Up
+		(1, 1),  # Down-right diagonal
+		(-1, -1),  # Up-left diagonal
+		(1, -1),  # Down-left diagonal
+		(-1, 1),  # Up-right diagonal
+	]
+	max_paper_in_area = 4
+	roll_char = "@"
+	for row in range(len(entries)):
+		for col in range(len(entries[row])):
+			candidate = entries[row][col]
+			count = 0
+			if candidate != roll_char: continue
+			for dr, dc in directions:
+				nr, nc = row + dr, col + dc
+				if 0 <= nr < len(entries) and 0 <= nc < len(entries[nr]):
+					count += entries[nr][nc] == roll_char
+			sol += count < max_paper_in_area
+	return sol
+```
+</details>
+
+#### Day 4 Solution part 2
+
+- **Answer**: 9182
+- **Timing**: 0.4265408515930176
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 4 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+def remove_from_grid(grid: list[str]):
+	directions = [
+		(0, 1),  # Right
+		(0, -1),  # Left
+		(1, 0),  # Down
+		(-1, 0),  # Up
+		(1, 1),  # Down-right diagonal
+		(-1, -1),  # Up-left diagonal
+		(1, -1),  # Down-left diagonal
+		(-1, 1),  # Up-right diagonal
+	]
+	roll_char = "@"
+	max_paper_in_area = 4
+	new_grid = grid.copy()
+	removed_count = 0
+	for row in range(len(grid)):
+		for col in range(len(grid[row])):
+			candidate = grid[row][col]
+			count = 0
+			if candidate != roll_char: continue
+			for dr, dc in directions:
+				nr, nc = row + dr, col + dc
+				if 0 <= nr < len(grid) and 0 <= nc < len(grid[nr]):
+					surrounding_candidate = grid[nr][nc]
+					count += surrounding_candidate == roll_char
+			can_remove = count < max_paper_in_area
+			if can_remove:
+				new_grid[row] = new_grid[row][:col] + '.' + new_grid[row][col + 1:]
+				removed_count += 1
+	return new_grid, removed_count
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	# Solving
+	sol = 0
+	can_continue = True
+	while can_continue:
+		entries, removed = remove_from_grid(entries)
+		sol += removed
+		can_continue = removed > 0
+	return sol
+```
+</details>
+
+<hr>
 
 ### 🦌 Day 3
 
