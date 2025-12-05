@@ -31,6 +31,7 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 5 Badge](https://img.shields.io/badge/2025%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5) 
  [![2025 Day 4 Badge](https://img.shields.io/badge/2025%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4) 
  [![2025 Day 3 Badge](https://img.shields.io/badge/2025%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3) 
  [![2025 Day 2 Badge](https://img.shields.io/badge/2025%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2) 
@@ -55,7 +56,7 @@ Bonkers.
  [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8) 
  [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
  [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
- [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5) 
+ [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1) 
  [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1) 
  [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1) 
  [![2023 Day 2 Badge](https://img.shields.io/badge/2023%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-1) 
@@ -68,7 +69,7 @@ Bonkers.
  [![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1) 
  [![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
  [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
- [![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1) 
+ [![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-2) 
  [![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2) 
  [![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2) 
  [![2022 Day 2 Badge](https://img.shields.io/badge/2022%20Day%202-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-2-2) 
@@ -76,6 +77,97 @@ Bonkers.
 
 
 ### Year 2025
+
+### 🤶 Day 5
+
+#### Day 5 Solution part 1
+
+- **Answer**: 840
+- **Timing**: 0.0029540061950683594
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 5 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = entries.splitlines()
+	available_instructions = []
+	ingredients = []
+	for line in entries:
+		if not line:
+			continue
+		if "-" in line:
+			available_instructions.append(tuple(map(int, line.split("-"))))
+		else:
+			ingredients.append(int(line))
+	sol = 0
+	for ingredient in ingredients:
+		for (low, high) in available_instructions:
+			if low <= ingredient <= high:
+				sol += 1
+				break
+	return sol
+```
+</details>
+
+#### Day 5 Solution part 2
+
+- **Answer**: 359913027576322
+- **Timing**: 0.0002460479736328125
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 5 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file, 'r') as file:
+		entries = file.read().strip().splitlines()
+
+	available_instructions = []
+	for line in entries:
+		if "-" not in line:
+			continue
+		available_instructions.append(tuple(map(int, line.split("-"))))
+
+	available_instructions.sort()
+
+	merged = []
+	cur_low, cur_high = available_instructions[0]
+
+	for (low, high) in available_instructions[1:]:
+		if low <= cur_high + 1:
+			cur_high = max(cur_high, high)
+		else:
+			merged.append((cur_low, cur_high))
+			cur_low, cur_high = low, high
+	merged.append((cur_low, cur_high))
+
+	return sum(high - low + 1 for low, high in merged)
+```
+</details>
+
+<hr>
 
 ### 🎄 Day 4
 
