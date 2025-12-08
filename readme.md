@@ -31,6 +31,9 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 8 Badge](https://img.shields.io/badge/2025%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8) 
+ [![2025 Day 7 Badge](https://img.shields.io/badge/2025%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
+ [![2025 Day 6 Badge](https://img.shields.io/badge/2025%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
  [![2025 Day 5 Badge](https://img.shields.io/badge/2025%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5) 
  [![2025 Day 4 Badge](https://img.shields.io/badge/2025%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4) 
  [![2025 Day 3 Badge](https://img.shields.io/badge/2025%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3) 
@@ -53,9 +56,9 @@ Bonkers.
 
  [![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11) 
  [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9) 
- [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8) 
- [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
- [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
+ [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1) 
+ [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
+ [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
  [![2023 Day 5 Badge](https://img.shields.io/badge/2023%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-1) 
  [![2023 Day 4 Badge](https://img.shields.io/badge/2023%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-1) 
  [![2023 Day 3 Badge](https://img.shields.io/badge/2023%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-1) 
@@ -66,9 +69,9 @@ Bonkers.
  [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1) 
  [![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10) 
  [![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1) 
- [![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1) 
- [![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
- [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
+ [![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-2) 
+ [![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-2) 
+ [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-2) 
  [![2022 Day 5 Badge](https://img.shields.io/badge/2022%20Day%205-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-5-2) 
  [![2022 Day 4 Badge](https://img.shields.io/badge/2022%20Day%204-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-4-2) 
  [![2022 Day 3 Badge](https://img.shields.io/badge/2022%20Day%203-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-3-2) 
@@ -77,6 +80,331 @@ Bonkers.
 
 
 ### Year 2025
+
+### 🌟 Day 8
+
+#### Day 8 Solution part 1
+
+- **Answer**: 135169
+- **Timing**: 0.7168819904327393
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 8 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import numpy as np
+import networkx as nx
+from math import prod
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip().splitlines()
+
+    points = np.array([tuple(map(int, box.split(","))) for box in entries])
+    diff = points[:, None, :] - points[None, :, :]
+    # used internet for this... im not smart. gets the Euclidian distance for each point.
+    dist_matrix = np.linalg.norm(diff, axis=2)
+    np.fill_diagonal(dist_matrix, np.inf)
+
+    # build graph of edges for each node.
+    G = nx.Graph()
+
+    for _ in range(1000):
+        i, j = np.unravel_index(np.argmin(dist_matrix), dist_matrix.shape)
+        G.add_edge(i, j)
+        # mask to not pick that combination in future.
+        dist_matrix[i, j] = np.inf
+        dist_matrix[j, i] = np.inf
+
+    return prod(sorted([len(c) for c in nx.connected_components(G)], reverse=True)[: 3])
+```
+</details>
+
+#### Day 8 Solution part 2
+
+- **Answer**: 302133440
+- **Timing**: 8.489840269088745
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 8 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+import numpy as np
+import networkx as nx
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip().splitlines()
+
+    points = np.array([tuple(map(int, box.split(","))) for box in entries])
+    diff = points[:, None, :] - points[None, :, :]
+    # used internet for this... im not smart. gets the Euclidian distance for each point.
+    dist_matrix = np.linalg.norm(diff, axis=2)
+    # avoid self references so i is != j
+    np.fill_diagonal(dist_matrix, np.inf)
+
+    # build graph of edges for each node.
+    G = nx.Graph()
+    # simulate all starting nodes having circuit of size=1
+    G.add_nodes_from(range(len(points)))
+    l1, l2 = None, None
+
+    while nx.number_connected_components(G) > 1:
+        i, j = np.unravel_index(np.argmin(dist_matrix), dist_matrix.shape)
+        l1, l2 = i, j
+        G.add_edge(i, j)
+        # mask to not pick that combination in future.
+        dist_matrix[i, j] = np.inf
+        dist_matrix[j, i] = np.inf
+    return points[l1][0] * points[l2][0]
+```
+</details>
+
+<hr>
+
+### ❄️ Day 7
+
+#### Day 7 Solution part 1
+
+- **Answer**: 1553
+- **Timing**: 0.002499103546142578
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 7 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+splitter = "^"
+
+def walk_grid(from_position: tuple[int, int], grid: list[str], seen: set[tuple[int, int]]):
+    row, col = from_position
+    beams = []
+    while grid[row][col] != splitter and row + 1 < len(grid):
+        row, col = row + 1, col
+        if grid[row][col] == splitter:
+            for direction in (1, -1):
+                new_pos = (row, col + direction)
+                if new_pos not in seen:
+                    beams.append(new_pos)
+            return beams
+    return beams
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    starting_pos = None
+    starting_char = 'S'
+    grid = []
+    for i, row in enumerate(entries.splitlines()):
+        vals = list(row)
+        grid.append(vals)
+        if starting_char in vals:
+            starting_pos = (i, vals.index(starting_char))
+    sol = 0
+    seen = set()
+
+    beams = [starting_pos]
+    while beams:
+        new_beams = walk_grid(beams.pop(), grid, seen)
+        seen.update(new_beams)
+        beams += new_beams
+        sol += len(new_beams) > 0
+    return sol
+```
+</details>
+
+#### Day 7 Solution part 2
+
+- **Answer**: 15811946526915
+- **Timing**: 0.21238994598388672
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 7 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+from functools import lru_cache
+
+splitter = "^"
+grid = []
+
+@lru_cache
+def walk_grid(row: int, col: int) -> int:
+    if row >= len(grid):
+        return 1
+
+    while row < len(grid) and grid[row][col] != splitter:
+        row += 1
+
+    if row >= len(grid):
+        return 1
+
+    total = 0
+    for direction in (-1, 1):
+        new_col = col + direction
+        if 0 <= new_col < len(grid[0]):
+            total += walk_grid(row + 1, new_col)
+    return total
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+    starting_pos = None
+    starting_char = 'S'
+    for i, row in enumerate(entries.splitlines()):
+        vals = list(row)
+        grid.append(vals)
+        if starting_char in vals:
+            starting_pos = (i, vals.index(starting_char))
+    return walk_grid(starting_pos[0], starting_pos[1])
+```
+</details>
+
+<hr>
+
+### 🎅 Day 6
+
+#### Day 6 Solution part 1
+
+- **Answer**: 6299564383938
+- **Timing**: 0.4551527500152588
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 6 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+import math
+import pandas as pd
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	df = pd.DataFrame([list(row) for row in entries.splitlines()]).fillna("")
+	# find all columns that are empty and use as ranges as the sep for a given problem.
+	breaks = [c for c in df.columns if df[c].str.strip().eq("").all()]
+	all_cols = list(df.columns)
+
+	segments = []
+	offset = 0
+	# build the segments for each problem.
+	for b in breaks:
+		segments.append(all_cols[offset:b])
+		offset = b + 1
+	segments.append(all_cols[offset:])
+
+	sol = 0
+	problem_operator = {"*": math.prod, "+": sum}
+	# iterate over problems, join the lines and use assigned operator.
+	for problem in [df.loc[:, seg] for seg in segments]:
+		entries = []
+		operator = None
+		for _, row in problem.iterrows():
+			value = ''.join(row).strip()
+			if value in problem_operator:
+				operator = problem_operator[value]
+				continue
+			entries.append(int(value))
+		sol += operator(entries)
+	return sol
+```
+</details>
+
+#### Day 6 Solution part 2
+
+- **Answer**: 11950004808442
+- **Timing**: 0.5448379516601562
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 6 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+import pandas as pd
+import math
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	df = pd.DataFrame([list(row) for row in entries.splitlines()]).fillna("")
+	# find all columns that are empty and use as ranges as the sep for a given problem.
+	breaks = [c for c in df.columns if df[c].str.strip().eq("").all()]
+	all_cols = list(df.columns)
+
+	segments = []
+	offset = 0
+	# build the segments for each problem.
+	for b in breaks:
+		segments.append(all_cols[offset:b])
+		offset = b + 1
+	segments.append(all_cols[offset:])
+
+	sol = 0
+	problem_operator = {"*": math.prod, "+": sum}
+	# iterate over problems, join the column values and use assigned operator.
+	for problem in [df.loc[:, seg] for seg in segments]:
+		entries = []
+		operator = None
+		for column in problem.columns:
+			series = df.loc[:, column]
+			column_string = ''.join(series)
+			mask = series.isin(problem_operator)
+			if mask.any():
+				operator = problem_operator[series[mask].iloc[0]]
+				column_string = column_string.replace(series[mask].iloc[0], '', 1)
+			entries.append(int(column_string))
+		entries.reverse()
+		sol += operator(entries)
+	return sol
+```
+</details>
+
+<hr>
 
 ### 🤶 Day 5
 
