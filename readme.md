@@ -31,6 +31,7 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 9 Badge](https://img.shields.io/badge/2025%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9) 
  [![2025 Day 8 Badge](https://img.shields.io/badge/2025%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8) 
  [![2025 Day 7 Badge](https://img.shields.io/badge/2025%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
  [![2025 Day 6 Badge](https://img.shields.io/badge/2025%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6) 
@@ -55,7 +56,7 @@ Bonkers.
  
 
  [![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11) 
- [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9) 
+ [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1) 
  [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1) 
  [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
  [![2023 Day 6 Badge](https://img.shields.io/badge/2023%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-1) 
@@ -68,7 +69,7 @@ Bonkers.
 
  [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1) 
  [![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10) 
- [![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1) 
+ [![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-2) 
  [![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-2) 
  [![2022 Day 7 Badge](https://img.shields.io/badge/2022%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-2) 
  [![2022 Day 6 Badge](https://img.shields.io/badge/2022%20Day%206-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-6-2) 
@@ -80,6 +81,98 @@ Bonkers.
 
 
 ### Year 2025
+
+### 🍪 Day 9
+
+#### Day 9 Solution part 1
+
+- **Answer**: 4725826296
+- **Timing**: 0.09739303588867188
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 9 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+    with open(input_file,'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+
+    # Parsing
+    entries = entries.splitlines()
+
+    # Solving
+    sol = 0
+
+    for i in range(len(entries)):
+        col1, row1 = map(int, entries[i].split(","))
+        for j in range(len(entries)):
+            col2, row2 = map(int, entries[j].split(","))
+            if (col1, row1) == (col2, row2):
+                continue
+            #     omggggg offbyone got me for soooooo long. grrrrrrr
+            sol = max((col2 - col1 + 1) * (row2 - row1 + 1), sol)
+    return sol
+```
+</details>
+
+#### Day 9 Solution part 2
+
+- **Answer**: 1637556834
+- **Timing**: 1.8597869873046875
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 9 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+from shapely import box
+from shapely.geometry.polygon import Polygon
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+
+    # Parsing
+    entries = [tuple(map(int, row.split(","))) for row in entries.splitlines()]
+    # shoutout joseph brosef for shapely.
+    poly = Polygon(entries)
+    # Solving
+    sol = 0
+    for i, (x1, y1) in enumerate(entries):
+        for j, (x2, y2) in enumerate(entries):
+            if i >= j:
+                continue
+            if x1 == x2 or y1 == y2:
+                continue
+            min_x, max_x = min(x1, x2), max(x1, x2)
+            min_y, max_y = min(y1, y2), max(y1, y2)
+            rect = box(min_x, min_y, max_x, max_y)
+            # Check if rectangle is completely inside the polygon
+            if poly.contains(rect):
+                area = (max_x - min_x + 1) * (max_y - min_y + 1)
+                sol = max(sol, area)
+    return sol
+```
+</details>
+
+<hr>
 
 ### 🌟 Day 8
 
