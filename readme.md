@@ -31,6 +31,7 @@ Bonkers.
 
 #### Jump to solution 
 
+ [![2025 Day 11 Badge](https://img.shields.io/badge/2025%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11) 
  [![2025 Day 9 Badge](https://img.shields.io/badge/2025%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9) 
  [![2025 Day 8 Badge](https://img.shields.io/badge/2025%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8) 
  [![2025 Day 7 Badge](https://img.shields.io/badge/2025%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7) 
@@ -55,7 +56,7 @@ Bonkers.
  [![2024 Day 1 Badge](https://img.shields.io/badge/2024%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1) 
  
 
- [![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11) 
+ [![2023 Day 11 Badge](https://img.shields.io/badge/2023%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1) 
  [![2023 Day 9 Badge](https://img.shields.io/badge/2023%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-1) 
  [![2023 Day 8 Badge](https://img.shields.io/badge/2023%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-1) 
  [![2023 Day 7 Badge](https://img.shields.io/badge/2023%20Day%207-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-7-1) 
@@ -67,7 +68,7 @@ Bonkers.
  [![2023 Day 1 Badge](https://img.shields.io/badge/2023%20Day%201-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-1-1) 
  
 
- [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-1) 
+ [![2022 Day 11 Badge](https://img.shields.io/badge/2022%20Day%2011-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-11-2) 
  [![2022 Day 10 Badge](https://img.shields.io/badge/2022%20Day%2010-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-10) 
  [![2022 Day 9 Badge](https://img.shields.io/badge/2022%20Day%209-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-9-2) 
  [![2022 Day 8 Badge](https://img.shields.io/badge/2022%20Day%208-none?logo=python&logoColor=f43f5e&color=065f46&labelColor=white&)](#-day-8-2) 
@@ -81,6 +82,98 @@ Bonkers.
 
 
 ### Year 2025
+
+### 🔔 Day 11
+
+#### Day 11 Solution part 1
+
+- **Answer**: 670
+- **Timing**: 0.0004482269287109375
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 11 part 1
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+	with open(input_file,'r') as file:
+		entries = file.read()
+	entries = entries.strip()
+
+	# Parsing
+	entries = [row.split(":") for row in entries.splitlines()]
+	connections = {device: outputs.split() for (device, outputs) in entries}
+	# Solving
+	sol = 0
+	starting_device, ending_device = "you", "out"
+	queue = [starting_device]
+	while queue:
+		for output in connections[queue.pop()]:
+			sol += output == ending_device
+			if output != ending_device:
+				queue.append(output)
+	return sol
+```
+</details>
+
+#### Day 11 Solution part 2
+
+- **Answer**: 332052564714990
+- **Timing**: 0.0015468597412109375
+
+<details>
+<summary>View code</summary>
+
+```python
+"""
+Solution to Advent of Code 2025 day 11 part 2
+Solved by doing some magic
+"""
+import time
+import sys
+
+
+def solution(input_file):
+    with open(input_file, 'r') as file:
+        entries = file.read()
+    entries = entries.strip()
+
+    # Parsing
+    entries = [row.split(":") for row in entries.splitlines()]
+    connections = {device: outputs.split() for (device, outputs) in entries}
+
+    starting_node, ending_node, must_visit = "svr", "out", {"dac", "fft"}
+    memo = {}
+
+    def count_paths(node: str, visited: frozenset):
+        key = (node, visited)
+        if key in memo:
+            return memo[key]
+
+        new_visited = visited | ({node} if node in must_visit else set())
+
+        if node == ending_node:
+            return 1 if new_visited == must_visit else 0
+
+        total = 0
+        for nxt in connections[node]:
+            total += count_paths(nxt, new_visited)
+
+        memo[key] = total
+        return total
+
+    return count_paths(starting_node, frozenset())
+```
+</details>
+
+<hr>
 
 ### 🍪 Day 9
 
